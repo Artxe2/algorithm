@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
     var html = "<ul>"
 
     for (const lang of Object.keys(list)) {
-        html += "<li><span class='lang'>" + lang + "</span><ul>"
+        html += "<li><span class='lang'>" + lang + ": <b>" + getCount(list[lang]) + "</b></span><ul>"
         for (const site of Object.keys(list[lang])) {
-            html += "<li><span class='site'>" + site + "</span><ul>"
+            html += "<li><span class='site'>" + site + ": <b>" + getCount(list[lang][site]) + "</b></span><ul>"
             if (site == "algorithm") {
                 for (const al of list[lang][site]) {
                     html += `<li><a class="algo" onclick="pushState('`
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 }
             } else {
                 for (const diff of Object.keys(list[lang][site])) {
-                    html += "<li><span class='diff'>" + diff + "</span><ul>"
+                    html += "<li><span class='diff'>" + diff + ": <b>" + getCount(list[lang][site][diff]) + "</b></span><ul>"
                     for (const algo of list[lang][site][diff]) {
                         html += `<li><a class="algo" onclick="pushState('`
                                 + lang + `/` + site + `/` + diff + `','` + algo[0]
@@ -41,6 +41,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
     html += "</ul>";
     _list.innerHTML = html;
 });
+
+getCount = obj => {
+    if (obj instanceof Array) {
+        return obj.length;
+    }
+    var result = 0;
+
+    for (const key of Object.keys(obj)) {
+        console.log(obj[key] instanceof Object)
+        result += getCount(obj[key]);
+    }
+    return result;
+}
 
 getUrl = () => {
     const url = new URLSearchParams(document.location.search);
@@ -73,7 +86,6 @@ showContent = (link, algo) => {
                         var t = hlParam.innerHTML;
                         const a = t.substr(1, t.length - 2).split(",");
                         for (var i in a) {
-                            var z = a[i];
                             if (a[i].charAt(0) != '<' && a[i].charAt(1) != '<') {
                                 var x = a[i].indexOf(" ", 1);
 

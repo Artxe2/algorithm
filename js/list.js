@@ -2,10 +2,13 @@ const algorithm = {
     backtracking: "backtracking"
     , BFS_breadthFirstSearch: "BFS(breadth first search)"
     , binarySearch: "binary search"
+    , DFS_depthFirstSearch: "DFS(depth first search)"
     , dijkstra: "dijkstra"
     , DP_dynamicProgramming: "DP(dynamic programming)"
+    , greedyAlgorithms: "greedy algorithms"
     , parametricSearch: "parametricSearch"
     , simulation: "simulation"
+    , twoPointer: "two pointer"
 };
 const list = {
     java: {
@@ -17,6 +20,12 @@ const list = {
             ]
             , kakao_level_3: [
                 [ "경주로-건설", algorithm.BFS_breadthFirstSearch ]
+                , [ "리틀-프렌즈-사천성", algorithm.greedyAlgorithms ]
+                , [ "보석-쇼핑", algorithm.twoPointer ]
+                , [ "보행자-천국", algorithm.DP_dynamicProgramming ]
+                , [ "불량-사용자", algorithm.DFS_depthFirstSearch ]
+                , [ "[1차]-셔틀버스", algorithm.simulation ]
+                , [ "표-편집", algorithm.simulation ]
                 , [ "합승-택시-요금", algorithm.dijkstra ]
                 , [ "GPS", algorithm.DP_dynamicProgramming ]
             ]
@@ -27,8 +36,10 @@ const list = {
             ]
             , kakao_level_1: [
                 [ "[1차]-다트-게임", algorithm.simulation ]
+                , [ "[1차]-비밀-지도", algorithm.simulation ]
                 , [ "숫자-문자열과-영단어", algorithm.simulation ]
                 , [ "신규-아이디-추천", algorithm.simulation ]
+                , [ "실패율", algorithm.simulation ]
                 , [ "크레인-인형뽑기-게임", algorithm.simulation ]
                 , [ "키패드-누르기", algorithm.simulation ]
             ]
