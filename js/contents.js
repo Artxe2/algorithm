@@ -1,3 +1,4 @@
+const URL_PATH = "/algorithm/";
 const today = new Date();
 const _root = document.querySelector("#root");
 const _contents = document.querySelector("#contents");
@@ -50,7 +51,7 @@ pushState = (link, algo) => {
     const url = new URLSearchParams(document.location.search);
 
     if (link != url.get("link") && algo != url.get("algo")) {
-        history.pushState(null, null, link && algo ? "?link=" + link + "&algo=" + algo : "/");
+        history.pushState(null, null, link && algo ? URL_PATH + "?link=" + link + "&algo=" + algo : URL_PATH);
         showContent(link, algo);
     }
 }
@@ -59,7 +60,7 @@ showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
-            url: "/algorithm/" + link + "/" + algo + ".md?" + today
+            url: URL_PATH + link + "/" + algo + ".md?" + today
             , success: res => {
                 _contents.innerHTML = "<h3>" + link + "</h3>"
                         + "<h1>" + algo.replace('-', ' ') + "</h1>" + marked.parse(res);
