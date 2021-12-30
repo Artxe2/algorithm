@@ -4,6 +4,7 @@ const algorithm = {
     , binarySearch: "binary search"
     , dijkstra: "dijkstra"
     , DP_dynamicProgramming: "DP(dynamic programming)"
+    , parametricSearch: "parametricSearch"
     , simulation: "simulation"
 };
 const list = {
@@ -29,6 +30,7 @@ const list = {
             , level_4: [
                 [ "도둑질", algorithm.DP_dynamicProgramming ]
                 , [ "지형-이동", algorithm.BFS_breadthFirstSearch ]
+                , [ "징검다리", algorithm.parametricSearch ]
             ]
             , level_3: [
             ]

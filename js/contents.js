@@ -1,4 +1,5 @@
-const URL_PATH = "/algorithm/";
+const URL_PATH = //"/";
+"/algorithm/";
 const today = new Date();
 const _root = document.querySelector("#root");
 const _contents = document.querySelector("#contents");
@@ -50,7 +51,7 @@ getUrl = () => {
 pushState = (link, algo) => {
     const url = new URLSearchParams(document.location.search);
 
-    if (link != url.get("link") && algo != url.get("algo")) {
+    if (link != url.get("link") || algo != url.get("algo")) {
         history.pushState(null, null, link && algo ? URL_PATH + "?link=" + link + "&algo=" + algo : URL_PATH);
         showContent(link, algo);
     }
