@@ -1,5 +1,5 @@
-const URL_PATH = //"/";
-"/algorithm/";
+// const URL_PATH = "/";
+const URL_PATH = "/algorithm/";
 const today = new Date();
 const _root = document.querySelector("#root");
 const _contents = document.querySelector("#contents");
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 for (const al of list[lang][site]) {
                     html += `<li><a class="algo" onclick="pushState('`
                             + lang + `/` + site + `','` + al
-                            + `')">` + al.replace('-', ' ') + `</a></li>`;
+                            + `')">` + al.replaceAll('-', ' ') + `</a></li>`;
                 }
             } else {
                 for (const diff of Object.keys(list[lang][site])) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     for (const algo of list[lang][site][diff]) {
                         html += `<li><a class="algo" onclick="pushState('`
                                 + lang + `/` + site + `/` + diff + `','` + algo[0]
-                                + `')">` + algo[0].replace('-', ' ') + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
+                                + `')">` + algo[0].replaceAll('-', ' ') + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
                     }
                     html += "</ul></li>";
                 }
@@ -61,10 +61,10 @@ showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
-            url: URL_PATH + link + "/" + algo + ".md?" + today
+            url: URL_PATH + link + "/" + algo.replaceAll('[', '').replaceAll(']', '') + ".md?" + today
             , success: res => {
                 _contents.innerHTML = "<h3>" + link + "</h3>"
-                        + "<h1>" + algo.replace('-', ' ') + "</h1>" + marked.parse(res);
+                        + "<h1>" + algo.replaceAll('-', ' ') + "</h1>" + marked.parse(res);
                 hljs.initHighlighting.called = false;
                 hljs.initHighlighting();
 
