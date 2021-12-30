@@ -1,7 +1,9 @@
 const algorithm = {
     backtracking: "backtracking"
+    , BFS_breadthFirstSearch: "BFS(breadth first search)"
     , binarySearch: "binary search"
     , dijkstra: "dijkstra"
+    , DP_dynamicProgramming: "DP(dynamic programming)"
     , simulation: "simulation"
 };
 const list = {
@@ -14,6 +16,7 @@ const list = {
             ]
             , kakao_level_3: [
                 [ "합승-택시-요금", algorithm.dijkstra ]
+                , [ "GPS", algorithm.DP_dynamicProgramming ]
             ]
             , kakao_level_2: [
                 [ "메뉴-리뉴얼", algorithm.backtracking ]
@@ -24,6 +27,8 @@ const list = {
                 [ "방의-개수", algorithm.simulation ]
             ]
             , level_4: [
+                [ "도둑질", algorithm.DP_dynamicProgramming ]
+                , [ "지형-이동", algorithm.BFS_breadthFirstSearch ]
             ]
             , level_3: [
             ]
