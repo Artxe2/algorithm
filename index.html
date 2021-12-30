@@ -1,1 +1,59 @@
-asd
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/vs2015.min.css">
+<link rel="stylesheet" href="css/github.css">
+<style>
+    .reverse {
+        flex-direction: column-reverse;
+    }
+    #root {
+        right: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    #contents, #list {
+        width: 768px;
+        min-width: 768px;
+        display: block;
+    }
+    #root table {
+        width: 306px;
+    }
+    ul, li {
+        margin: 0px;
+        font-weight: bold;
+    }
+    .lang {
+        font-size: 2rem;
+    }
+    .site {
+        font-size: 1.5rem;
+    }
+    .diff {
+        font-size: 1.25rem;
+    }
+    #logo, .algo {
+        cursor: pointer;
+    }
+    pre span {
+        font-size: 1rem !important;
+    }
+</style>
+<title>Artxe`s Algorithm Code</title>
+<body>
+</head>
+</body>
+    <h1 id="logo" onclick="pushState()">Algorithm</h1>
+    <div id="root">
+        <div id="contents"></div>
+        <div id="list"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/highlight.min.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/contents.js"></script>
+    <script src="js/list.js"></script>
+</html>
