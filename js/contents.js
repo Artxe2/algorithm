@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     html += "<li><span class='diff'>" + diff + ": <b>" + getCount(list[lang][site][diff]) + "</b></span><ul>"
                     for (const algo of list[lang][site][diff]) {
                         html += `<li><a class="algo" onclick="pushState('`
-                                + lang + `/` + site + `/` + diff + `','` + algo[0]
-                                + `')">` + algo[0].replaceAll('-', ' ') + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
+                                + lang + `/` + site + `/` + diff + `','` + algo[0].replaceAll(' ', '-')
+                                + `')">` + algo[0] + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
                     }
                     html += "</ul></li>";
                 }
@@ -49,7 +49,6 @@ getCount = obj => {
     var result = 0;
 
     for (const key of Object.keys(obj)) {
-        console.log(obj[key] instanceof Object)
         result += getCount(obj[key]);
     }
     return result;
@@ -74,28 +73,13 @@ showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
-            url: URL_PATH + link + "/" + algo.replaceAll('[', '').replaceAll(']', '') + ".md?" + today
+            url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '') + ".md?" + today
             , success: res => {
                 _contents.innerHTML = "<h3>" + link + "</h3>"
                         + "<h1>" + algo.replaceAll('-', ' ') + "</h1>" + marked.parse(res);
                 hljs.initHighlighting.called = false;
-                hljs.initHighlighting();
-
-                for (const codeHl of document.querySelectorAll(".hljs")) {
-                    for (const hlParam of codeHl.querySelectorAll(".hljs-params")) {
-                        var t = hlParam.innerHTML;
-                        const a = t.substr(1, t.length - 2).split(",");
-                        for (var i in a) {
-                            if (a[i].charAt(0) != '<' && a[i].charAt(1) != '<') {
-                                var x = a[i].indexOf(" ", 1);
-
-                                a[i] = `<span class="hljs-type">` + a[i].substring(0, x)
-                                        + `</span>` + a[i].substring(x);
-                            }
-                        }
-                        hlParam.innerHTML = "(" + a.join() + ")";
-                    }
-                }
+                hljs.highlightAll();
+                window.scrollTo(0, 0);
             }
         });
     } else {
