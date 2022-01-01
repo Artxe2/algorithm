@@ -1,12 +1,13 @@
 const algorithm = {
     backtracking: "backtracking"
+    , bestFirstSearch: "best first search"
     , BFS_breadthFirstSearch: "BFS(breadth first search)"
     , binarySearch: "binary search"
     , DFS_depthFirstSearch: "DFS(depth first search)"
     , dijkstra: "dijkstra"
     , DP_dynamicProgramming: "DP(dynamic programming)"
     , greedyAlgorithms: "greedy algorithms"
-    , parametricSearch: "parametricSearch"
+    , parametricSearch: "parametric search"
     , simulation: "simulation"
     , twoPointer: "two pointer"
     , recursion: "recursion"
@@ -42,6 +43,7 @@ const list = {
                 , [ "[3차] 방금그곡", algorithm.simulation ]
                 , [ "[3차] 압축", algorithm.simulation ]
                 , [ "[3차] 파일명 정렬", algorithm.simulation ]
+                , [ "[3차] n진수 게임", algorithm.recursion ]
                 , [ "괄호 변환", algorithm.recursion ]
                 , [ "거리두기 확인하기", algorithm.simulation ]
                 , [ "단체사진 찍기", algorithm.backtracking ]
@@ -53,7 +55,6 @@ const list = {
                 , [ "카카오프렌즈 컬러링북", algorithm.DFS_depthFirstSearch ]
                 , [ "튜플", algorithm.simulation ]
                 , [ "후보키", algorithm.BFS_breadthFirstSearch ]
-                , [ "[3차] n진수 게임", algorithm.recursion ]
             ]
             , kakao_level_1: [
                 [ "[1차] 다트 게임", algorithm.simulation ]
@@ -77,14 +78,27 @@ const list = {
                 , [ "가장 긴 팰린드롬", algorithm.simulation ]
                 , [ "가장 먼 노드", algorithm.BFS_breadthFirstSearch ]
                 , [ "금과 은 운반하기", algorithm.parametricSearch ]
+                , [ "네트워크", algorithm.DFS_depthFirstSearch ]
                 , [ "다단계 칫솔 판매", algorithm.simulation ]
+                , [ "단속카메라", algorithm.simulation ]
+                , [ "단어 변환", algorithm.simulation ]
+                , [ "등굣길", algorithm.DP_dynamicProgramming ]
+                , [ "디스크 컨트롤러", algorithm.simulation ]
+                , [ "섬 연결하기", algorithm.simulation ]
+                , [ "순위", algorithm.simulation ]
                 , [ "스티커 모으기(2)", algorithm.simulation ]
+                , [ "베스트앨범", algorithm.simulation ]
                 , [ "아이템 줍기", algorithm.simulation ]
+                , [ "여행경로", algorithm.bestFirstSearch ]
                 , [ "이중우선순위큐", algorithm.parametricSearch ]
+                , [ "입국심사", algorithm.parametricSearch ]
+                , [ "정수 삼각형", algorithm.DP_dynamicProgramming ]
                 , [ "줄 서는 방법", algorithm.recursion ]
+                , [ "최고의 집합", algorithm.simulation ]
                 , [ "풍선 터뜨리기", algorithm.simulation ]
                 , [ "하노이의 탑", algorithm.recursion ]
                 , [ "N-Queen", algorithm.backtracking ]
+                , [ "N으로 표현", algorithm.backtracking ]
             ]
             , level_2: [
                 [ "게임 맵 최단거리", algorithm.BFS_breadthFirstSearch ]
