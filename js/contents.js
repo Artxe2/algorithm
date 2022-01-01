@@ -75,7 +75,7 @@ showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
-            url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '') + ".md?" + today
+            url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') + ".md?" + today
             , success: res => {
                 _contents.innerHTML = "<h3>" + link + "</h3>"
                         + "<h1>" + algo.replaceAll('-', ' ') + "</h1>" + marked.parse(res);
