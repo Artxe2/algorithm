@@ -6,7 +6,8 @@ const algorithm = {
     , DFS_depthFirstSearch: "DFS(depth first search)"
     , dijkstra: "dijkstra"
     , DP_dynamicProgramming: "DP(dynamic programming)"
-    , greedyAlgorithms: "greedy algorithms"
+    , euclideanAlgorithm: "euclidean algorithm"
+    , greedyAlgorithm: "greedy algorithm"
     , parametricSearch: "parametric search"
     , simulation: "simulation"
     , twoPointer: "two pointer"
@@ -25,7 +26,7 @@ const list = {
                 , [ "[1차] 추석 트래픽", algorithm.simulation ]
                 , [ "기둥과 보 설치", algorithm.simulation ]
                 , [ "경주로 건설", algorithm.BFS_breadthFirstSearch ]
-                , [ "리틀 프렌즈 사천성", algorithm.greedyAlgorithms ]
+                , [ "리틀 프렌즈 사천성", algorithm.greedyAlgorithm ]
                 , [ "보석 쇼핑", algorithm.twoPointer ]
                 , [ "보행자 천국", algorithm.DP_dynamicProgramming ]
                 , [ "불량 사용자", algorithm.DFS_depthFirstSearch ]
@@ -74,7 +75,7 @@ const list = {
                 , [ "징검다리", algorithm.parametricSearch ]
             ]
             , level_3: [
-                [ "2 x n 타일링", algorithm.simulation ]
+                [ "2 x n 타일링", algorithm.DP_dynamicProgramming ]
                 , [ "가장 긴 팰린드롬", algorithm.simulation ]
                 , [ "가장 먼 노드", algorithm.BFS_breadthFirstSearch ]
                 , [ "금과 은 운반하기", algorithm.parametricSearch ]
@@ -101,9 +102,54 @@ const list = {
                 , [ "N으로 표현", algorithm.backtracking ]
             ]
             , level_2: [
-                [ "게임 맵 최단거리", algorithm.BFS_breadthFirstSearch ]
+                [ "124 나라의 숫자", algorithm.recursion ]
+                , [ "2개 이하로 다른 비트", algorithm.simulation ]
+                , [ "가장 큰 수", algorithm.simulation ]
+                , [ "가장 큰 정사각형 찾기", algorithm.DP_dynamicProgramming ]
+                , [ "게임 맵 최단거리", algorithm.BFS_breadthFirstSearch ]
+                , [ "괄호 회전하기", algorithm.simulation ]
+                , [ "교점에 별 만들기", algorithm.simulation ]
+                , [ "구명보트", algorithm.twoPointer ]
+                , [ "기능개발", algorithm.simulation ]
+                , [ "다리를 지나는 트럭", algorithm.simulation ]
+                , [ "다음 큰 숫자", algorithm.simulation ]
+                , [ "더 맵게", algorithm.simulation ]
+                , [ "땅따먹기", algorithm.simulation ]
+                , [ "멀쩡한 사각형", algorithm.euclideanAlgorithm ]
+                , [ "모음 사전", algorithm.simulation ]
                 , [ "방문 길이", algorithm.simulation ]
+                , [ "배달", algorithm.dijkstra ]
+                , [ "빛의 경로 사이클", algorithm.simulation ]
+                , [ "삼각 달팽이", algorithm.simulation ]
+                , [ "소수 찾기", algorithm.DFS_depthFirstSearch ]
+                , [ "숫자의 표현", algorithm.simulation ]
+                , [ "스킬트리", algorithm.simulation ]
+                , [ "영어 끝말잇기", algorithm.simulation ]
+                , [ "예상 대진표", algorithm.simulation ]
+                , [ "올바른 괄호", algorithm.simulation ]
+                , [ "위장", algorithm.simulation ]
+                , [ "이진 변환 반복하기", algorithm.simulation ]
+                , [ "전력망을 둘로 나누기", algorithm.DFS_depthFirstSearch ]
+                , [ "전화번호 목록", algorithm.simulation ]
+                , [ "점프와 순간 이동", algorithm.simulation ]
+                , [ "조이스틱", algorithm.simulation ]
+                , [ "주식가격", algorithm.simulation ]
+                , [ "짝지어 제거하기", algorithm.simulation ]
+                , [ "최댓값과 최솟값", algorithm.simulation ]
+                , [ "최솟값 만들기", algorithm.simulation ]
                 , [ "카펫", algorithm.binarySearch ]
+                , [ "쿼드압축 후 개수 세기", algorithm.DFS_depthFirstSearch ]
+                , [ "큰 수 만들기", algorithm.greedyAlgorithm ]
+                , [ "타겟 넘버", algorithm.DFS_depthFirstSearch ]
+                , [ "프린터", algorithm.simulation ]
+                , [ "피로도", algorithm.bestFirstSearch ]
+                , [ "피보나치 수", algorithm.DP_dynamicProgramming ]
+                , [ "행렬 테두리 회전하기", algorithm.simulation ]
+                , [ "행렬의 곱셈", algorithm.simulation ]
+                , [ "H-Index", algorithm.parametricSearch ]
+                , [ "JadenCase 문자열 만들기", algorithm.simulation ]
+                , [ "n^2 배열 자르기", algorithm.simulation ]
+                , [ "N개의 최소공배수", algorithm.euclideanAlgorithm ]
             ]
             , level_1: [
             ]
