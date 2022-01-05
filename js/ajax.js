@@ -23,6 +23,5 @@ ajax = (config) => {
 			config.url + (config.param == undefined ? "" : config.param),
 			config.async == undefined ? true : config.async,
 	);
-	req.setRequestHeader("Content-type", "application/json");
 	req.send();
 }
