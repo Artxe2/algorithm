@@ -95,6 +95,7 @@ const list = {
                 , [ "입국심사", algorithm.parametricSearch ]
                 , [ "정수 삼각형", algorithm.DP_dynamicProgramming ]
                 , [ "줄 서는 방법", algorithm.recursion ]
+                , [ "징검다리 건너기", algorithm.parametricSearch ]
                 , [ "최고의 집합", algorithm.simulation ]
                 , [ "풍선 터뜨리기", algorithm.simulation ]
                 , [ "퍼즐 조각 채우기", algorithm.DFS_depthFirstSearch ]
