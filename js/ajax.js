@@ -1,5 +1,6 @@
 ajax = (config) => {
 	var req = new XMLHttpRequest();
+
 	req.onreadystatechange = () => {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
@@ -18,9 +19,10 @@ ajax = (config) => {
 		}
 	}
 	req.open(
-			config.method == undefined ? 'GET' : config.method,
-			config.url + (config.param == undefined ? '' : config.param),
-			config.async == undefined ? true : config.async
+			config.method == undefined ? "GET" : config.method,
+			config.url + (config.param == undefined ? "" : config.param),
+			config.async == undefined ? true : config.async,
 	);
+	req.setRequestHeader("Content-type", "application/json");
 	req.send();
 }

@@ -1,5 +1,6 @@
 // const URL_PATH = "/";
 const URL_PATH = "/algorithm/";
+const MD_PATH = "https://cors-anywhere.herokuapp.com/https://github.com/Artxe2/algorithm/blob/master/";
 const today = new Date();
 const _root = document.querySelector("#root");
 const _contents = document.querySelector("#contents");
@@ -75,15 +76,27 @@ showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
-            url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') + ".md?" + today
+            url: MD_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') + ".md?" + today
             , success: res => {
-                _contents.innerHTML = "<h3>" + link + "</h3>"
-                        + "<h1>" + algo.replaceAll('-', ' ') + "</h1>" + marked.parse(res);
-                hljs.initHighlighting.called = false;
-                hljs.highlightAll();
+                const template = document.createElement("div");
+
+                template.innerHTML = res;
+                _contents.innerHTML = "<h3>" + link + "</h3>" + "<h1>" + algo.replaceAll('-', ' ') + "</h1>"
+                        + template.querySelector(".markdown-body").outerHTML;
                 window.scrollTo(0, 0);
             }
+            , no_cors: true
         });
+        // ajax({
+        //     url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') + ".md?" + today
+        //     , success: res => {
+        //         _contents.innerHTML = "<h3>" + link + "</h3>"
+        //                 + "<h1>" + algo.replaceAll('-', ' ') + "</h1>" + marked.parse(res);
+        //         hljs.initHighlighting.called = false;
+        //         hljs.highlightAll();
+        //         window.scrollTo(0, 0);
+        //     }
+        // });
     } else {
         _contents.innerHTML = "";
         _root.classList = [ "reverse" ];
