@@ -97,6 +97,7 @@ const list = {
                 , [ "줄 서는 방법", algorithm.recursion ]
                 , [ "최고의 집합", algorithm.simulation ]
                 , [ "풍선 터뜨리기", algorithm.simulation ]
+                , [ "퍼즐 조각 채우기", algorithm.DFS_depthFirstSearch ]
                 , [ "하노이의 탑", algorithm.recursion ]
                 , [ "N-Queen", algorithm.backtracking ]
                 , [ "N으로 표현", algorithm.backtracking ]
