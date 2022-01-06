@@ -9,6 +9,7 @@ const algorithm = {
     , euclideanAlgorithm: "euclidean algorithm"
     , greedyAlgorithm: "greedy algorithm"
     , parametricSearch: "parametric search"
+    , priorityQueue: "priority queue"
     , simulation: "simulation"
     , slidingWindow: "sliding window"
     , twoPointer: "two pointer"
@@ -92,6 +93,7 @@ const list = {
                 , [ "스티커 모으기(2)", algorithm.simulation ]
                 , [ "베스트앨범", algorithm.simulation ]
                 , [ "아이템 줍기", algorithm.simulation ]
+                , [ "야근 지수", algorithm.priorityQueue ]
                 , [ "여행경로", algorithm.bestFirstSearch ]
                 , [ "이중우선순위큐", algorithm.parametricSearch ]
                 , [ "입국심사", algorithm.parametricSearch ]
@@ -117,7 +119,7 @@ const list = {
                 , [ "기능개발", algorithm.simulation ]
                 , [ "다리를 지나는 트럭", algorithm.simulation ]
                 , [ "다음 큰 숫자", algorithm.simulation ]
-                , [ "더 맵게", algorithm.simulation ]
+                , [ "더 맵게", algorithm.priorityQueue ]
                 , [ "땅따먹기", algorithm.simulation ]
                 , [ "멀쩡한 사각형", algorithm.euclideanAlgorithm ]
                 , [ "모음 사전", algorithm.simulation ]
