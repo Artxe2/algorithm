@@ -10,6 +10,7 @@ const algorithm = {
     , greedyAlgorithm: "greedy algorithm"
     , parametricSearch: "parametric search"
     , simulation: "simulation"
+    , slidingWindow: "sliding window"
     , twoPointer: "two pointer"
     , recursion: "recursion"
 };
@@ -78,6 +79,7 @@ const list = {
                 [ "2 x n 타일링", algorithm.DP_dynamicProgramming ]
                 , [ "가장 긴 팰린드롬", algorithm.simulation ]
                 , [ "가장 먼 노드", algorithm.BFS_breadthFirstSearch ]
+                , [ "광고 삽입", algorithm.slidingWindow ]
                 , [ "금과 은 운반하기", algorithm.parametricSearch ]
                 , [ "네트워크", algorithm.DFS_depthFirstSearch ]
                 , [ "다단계 칫솔 판매", algorithm.simulation ]
