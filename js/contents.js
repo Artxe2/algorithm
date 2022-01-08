@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     html += "<li class='none'><span class='diff' onclick='fold(event,this)'>" + diff + ": <b>" + getCount(list[lang][site][diff]) + "</b></span><ul>"
                     for (const algo of list[lang][site][diff]) {
                         html += `<li class='none'><a class="algo" onclick="pushState(event,'`
-                                + lang + `/` + site + `/` + diff + `','` + algo[0].replaceAll(' ', '-')
+                                + lang + `/` + site + `/` + diff + `','` + algo[0].replaceAll(" ", "-")
                                 + `')">` + algo[0] + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
                     }
                     html += "</ul></li>";
@@ -77,10 +77,26 @@ showContent = (link, algo) => {
         ajax({
             url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') + ".md?" + today
             , success: res => {
-                const md = window.markdownit();
+                const md = window.markdownit().render(res)
+                let path = list;
+                let hash = " ";
+
+                for (const p of link.split("/")) {
+                    path = path[p];
+                }
+                algo = algo.replaceAll("-", " ");
+                for (const a of path) {
+                    if (a[0] === algo) {
+                        for (let i = 1; i < a.length; i++) {
+                            hash = hash + "<code class='hash'># " + a[i] + "</code>";
+                        }
+                        break;
+                    }
+                }
 
                 _contents.innerHTML = "<h3>" + link + "</h3>"
-                        + "<h1>" + algo.replaceAll('-', ' ') + "</h1>" + md.render(res);
+                        + "<h1>" + algo + "</h1>"
+                        + hash + md;
                 hljs.initHighlighting.called = false;
                 hljs.highlightAll();
                 window.scrollTo(0, 0);
