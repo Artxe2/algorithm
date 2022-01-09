@@ -79,7 +79,7 @@ showContent = (link, algo) => {
             , success: res => {
                 const md = window.markdownit().render(res)
                 let path = list;
-                let hash = " ";
+                let hash = "<div id='hash'>";
 
                 for (const p of link.split("/")) {
                     path = path[p];
@@ -93,6 +93,7 @@ showContent = (link, algo) => {
                         break;
                     }
                 }
+                hash = hash + "</div>";
 
                 _contents.innerHTML = "<h3>" + link + "</h3>"
                         + "<h1>" + algo + "</h1>"

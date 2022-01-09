@@ -7,6 +7,7 @@ const DFS_depthFirstSearch = "DFS(depth first search)";
 const dijkstra = "dijkstra";
 const DP_dynamicProgramming = "DP(dynamic programming)";
 const euclideanAlgorithm = "euclidean algorithm";
+const fibonacci = "fibonacci";
 const graph = "graph";
 const greedyAlgorithm = "greedy algorithm";
 const hashSet = "hash set";
@@ -80,7 +81,7 @@ const list = {
                 , [ "징검다리", parametricSearch ]
             ]
             , level_3: [
-                [ "2 x n 타일링", DP_dynamicProgramming ]
+                [ "2 x n 타일링", fibonacci, DP_dynamicProgramming ]
                 , [ "가장 긴 팰린드롬", simulation ]
                 , [ "가장 먼 노드", graph, BFS_breadthFirstSearch ]
                 , [ "광고 삽입", slidingWindow ]
@@ -92,6 +93,7 @@ const list = {
                 , [ "단어 변환", simulation ]
                 , [ "등굣길", DP_dynamicProgramming ]
                 , [ "디스크 컨트롤러", simulation ]
+                , [ "멀리 뛰기", fibonacci, DP_dynamicProgramming ]
                 , [ "섬 연결하기", simulation ]
                 , [ "순위", simulation ]
                 , [ "스티커 모으기(2)", simulation ]
@@ -153,7 +155,7 @@ const list = {
                 , [ "타겟 넘버", DFS_depthFirstSearch ]
                 , [ "프린터", simulation ]
                 , [ "피로도", bestFirstSearch ]
-                , [ "피보나치 수", DP_dynamicProgramming ]
+                , [ "피보나치 수", fibonacci, DP_dynamicProgramming ]
                 , [ "행렬 테두리 회전하기", simulation ]
                 , [ "행렬의 곱셈", simulation ]
                 , [ "H-Index", parametricSearch ]
