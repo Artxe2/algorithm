@@ -81,7 +81,8 @@ const list = {
                 , [ "징검다리", parametricSearch ]
             ]
             , level_3: [
-                [ "2 x n 타일링", fibonacci, DP_dynamicProgramming ]
+                [ "110 옮기기", simulation ]
+                , [ "2 x n 타일링", fibonacci, DP_dynamicProgramming ]
                 , [ "가장 긴 팰린드롬", simulation ]
                 , [ "가장 먼 노드", graph, BFS_breadthFirstSearch ]
                 , [ "광고 삽입", slidingWindow ]
