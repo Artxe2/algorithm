@@ -2,7 +2,11 @@
 class Solution {
     public int solution(int n, int m, int[][] edge_list, int k, int[] gps_log) {
         int length = gps_log.length;
+        int index = 1;
+        int fix;
+        int[] prev = new int[n];
         int[] curr = new int[n];
+        int[] temp;
         int[][] graph = toGraph(n, edge_list);
 
         for (int i = 0; i < length; i++) {
@@ -10,15 +14,6 @@ class Solution {
         }
         fill(curr, n, --length);
         curr[gps_log[0]] = 0;
-        return dp(graph, gps_log, curr, n, length);
-    }
-
-    int dp(int[][] graph, int[] gps_log, int[] curr, int n, int length) {
-        int index = 1;
-        int fix;
-        int[] prev = new int[n];
-        int[] temp;
-
         while (index < length) {
             temp = prev;
             prev = curr;

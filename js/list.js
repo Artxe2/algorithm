@@ -96,6 +96,7 @@ const list = {
                 , [ "등굣길", DP_dynamicProgramming ]
                 , [ "디스크 컨트롤러", simulation ]
                 , [ "멀리 뛰기", fibonacci, DP_dynamicProgramming ]
+                , [ "모두 0으로 만들기", graph, DP_dynamicProgramming ]
                 , [ "섬 연결하기", simulation ]
                 , [ "순위", simulation ]
                 , [ "숫자 게임", sort ]

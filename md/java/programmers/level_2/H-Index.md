@@ -4,10 +4,7 @@ class Solution {
         int length = citations.length;
 
         quickSort(citations, 0, length);
-        return parametricSearch(citations, length);
-    }
-
-    int parametricSearch(int[] citations, int length) {
+        
         int start = 0;
         int mid;
         int end = length;
