@@ -87,6 +87,7 @@ const list = {
                 , [ "가장 먼 노드", graph, BFS_breadthFirstSearch ]
                 , [ "광고 삽입", slidingWindow ]
                 , [ "거스름돈", DP_dynamicProgramming ]
+                , [ "공 이동 시뮬레이션", simulation ]
                 , [ "금과 은 운반하기", parametricSearch ]
                 , [ "길 찾기 게임", binaryTree, DFS_depthFirstSearch, sort ]
                 , [ "네트워크", DFS_depthFirstSearch ]
