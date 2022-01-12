@@ -1,5 +1,5 @@
-const URL_PATH = "/";
-// const URL_PATH = "/algorithm/";
+// const URL_PATH = "/";
+const URL_PATH = "/algorithm/";
 const today = new Date();
 const _root = document.querySelector("#root");
 const _contents = document.querySelector("#contents");
