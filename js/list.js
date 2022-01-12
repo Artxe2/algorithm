@@ -102,6 +102,7 @@ const list = {
                 , [ "섬 연결하기", simulation ]
                 , [ "순위", simulation ]
                 , [ "숫자 게임", sort ]
+                , [ "스타 수열", greedyAlgorithm ]
                 , [ "스티커 모으기(2)", simulation ]
                 , [ "베스트앨범", simulation ]
                 , [ "아이템 줍기", simulation ]
