@@ -1,5 +1,13 @@
 public class PrintArray {
     static final void print(boolean[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length = array.length - 1, i = 0;
         System.out.print("{ ");
         while (i < length) {
@@ -9,6 +17,14 @@ public class PrintArray {
     }
 
     static final void print(boolean[][] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length, i;
         System.out.print("{\n");
         for (boolean[] a : array) {
@@ -28,6 +44,14 @@ public class PrintArray {
     }
 
     static final void print(char[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length = array.length - 1, i = 0;
         System.out.print("{ ");
         while (i < length) {
@@ -37,6 +61,14 @@ public class PrintArray {
     }
 
     static final void print(char[][] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length, i;
         System.out.print("{\n");
         for (char[] a : array) {
@@ -56,6 +88,14 @@ public class PrintArray {
     }
 
     static final void print(int[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length = array.length - 1, i = 0;
         System.out.print("{ ");
         while (i < length) {
@@ -65,6 +105,14 @@ public class PrintArray {
     }
 
     static final void print(int[][] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length, i;
         System.out.print("{\n");
         for (int[] a : array) {
@@ -86,6 +134,14 @@ public class PrintArray {
     }
 
     static final void print(Integer[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length = array.length - 1, i = 0;
         System.out.print("{ ");
         while (i < length) {
@@ -95,6 +151,14 @@ public class PrintArray {
     }
 
     static final void print(Integer[][] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length, i;
         System.out.print("{\n");
         for (Integer[] a : array) {
@@ -114,6 +178,14 @@ public class PrintArray {
     }
 
     static final void print(long[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length = array.length - 1, i = 0;
         System.out.print("{ ");
         while (i < length) {
@@ -123,6 +195,14 @@ public class PrintArray {
     }
 
     static final void print(long[][] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length, i;
         System.out.print("{\n");
         for (long[] a : array) {
@@ -142,6 +222,14 @@ public class PrintArray {
     }
 
     static final void print(String[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length = array.length - 1, i = 0;
         System.out.print("{ \"");
         while (i < length) {
@@ -151,6 +239,14 @@ public class PrintArray {
     }
 
     static final void print(String[][] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("{}");
+            return;
+        }
         int length, i;
         System.out.print("{\n");
         for (String[] a : array) {

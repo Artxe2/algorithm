@@ -10,6 +10,7 @@ const euclideanAlgorithm = "euclidean algorithm";
 const fibonacci = "fibonacci";
 const graph = "graph";
 const greedyAlgorithm = "greedy algorithm";
+const hashMap = "hash map";
 const hashSet = "hash set";
 const parametricSearch = "parametric search";
 const priorityQueue = "priority queue";
@@ -70,6 +71,7 @@ const list = {
                 [ "[1차] 다트 게임", simulation ]
                 , [ "[1차] 비밀 지도", simulation ]
                 , [ "숫자 문자열과 영단어", simulation ]
+                , [ "신고 결과 받기", hashMap, hashSet ]
                 , [ "신규 아이디 추천", simulation ]
                 , [ "실패율", simulation ]
                 , [ "크레인 인형뽑기 게임", simulation ]
