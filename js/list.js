@@ -66,6 +66,7 @@ const list = {
                 , [ "카카오프렌즈 컬러링북", DFS_depthFirstSearch ]
                 , [ "튜플", simulation ]
                 , [ "후보키", BFS_breadthFirstSearch ]
+                , [ "k진수에서 소수 개수 구하기", simulation ]
             ]
             , kakao_level_1: [
                 [ "[1차] 다트 게임", simulation ]
