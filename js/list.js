@@ -63,6 +63,7 @@ const list = {
                 , [ "수식 최대화", DFS_depthFirstSearch ]
                 , [ "순위 검색", parametricSearch ]
                 , [ "오픈채팅방", simulation ]
+                , [ "주차 요금 계산", hashMap ]
                 , [ "카카오프렌즈 컬러링북", DFS_depthFirstSearch ]
                 , [ "튜플", simulation ]
                 , [ "후보키", BFS_breadthFirstSearch ]
