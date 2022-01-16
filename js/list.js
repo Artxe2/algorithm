@@ -3,6 +3,7 @@ const bestFirstSearch = "best first search";
 const BFS_breadthFirstSearch = "BFS(breadth first search)";
 const binarySearch = "binary search";
 const binaryTree = "binary tree";
+const branchAndBound = "branch and bound";
 const DFS_depthFirstSearch = "DFS(depth first search)";
 const dijkstra = "dijkstra";
 const DP_dynamicProgramming = "DP(dynamic programming)";
@@ -62,6 +63,7 @@ const list = {
                 , [ "문자열 압축", simulation ]
                 , [ "수식 최대화", DFS_depthFirstSearch ]
                 , [ "순위 검색", parametricSearch ]
+                , [ "양궁대회", DFS_depthFirstSearch, branchAndBound ]
                 , [ "오픈채팅방", simulation ]
                 , [ "주차 요금 계산", hashMap ]
                 , [ "카카오프렌즈 컬러링북", DFS_depthFirstSearch ]
