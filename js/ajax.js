@@ -1,4 +1,4 @@
-ajax = (config) => {
+const ajax = config => {
 	var req = new XMLHttpRequest();
 
 	req.onreadystatechange = () => {

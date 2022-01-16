@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     _list.innerHTML = html;
 });
 
-getCount = obj => {
+const getCount = obj => {
     if (obj instanceof Array) {
         return obj.length;
     }
@@ -53,13 +53,13 @@ getCount = obj => {
     return result;
 }
 
-getUrl = () => {
+const getUrl = () => {
     const url = new URLSearchParams(document.location.search);
 
     showContent(url.get("link"), url.get("algo"));
 }
 
-pushState = (e, link, algo) => {
+const pushState = (e, link, algo) => {
     e.stopPropagation();
 
     const url = new URLSearchParams(document.location.search);
@@ -70,7 +70,7 @@ pushState = (e, link, algo) => {
     }
 }
 
-showContent = (link, algo) => {
+const showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
@@ -99,6 +99,7 @@ showContent = (link, algo) => {
                         + hash + md;
                 hljs.initHighlighting.called = false;
                 hljs.highlightAll();
+                highlightCustom();
                 window.scrollTo(0, 0);
             }
         });
@@ -108,7 +109,7 @@ showContent = (link, algo) => {
     }
 }
 
-fold = (e, el) => {
+const fold = (e, el) => {
     e.stopPropagation();
 
     const lis = el.parentNode.querySelectorAll(':scope > ul > li');
@@ -120,5 +121,23 @@ fold = (e, el) => {
         } else {
             li.className = (li.className + " none").trim();
         }
+    }
+}
+
+const highlightCustom = () => {
+    const hljs = document.querySelectorAll('.language-java.hljs');
+
+    for (const hl of hljs) {
+        const keywords = hl.querySelectorAll('.hljs-keyword');
+    
+        for (const el of keywords) {
+            switch (el.innerHTML) {
+                case "class": case"public":
+                    el.classList.add("prefix");
+            }
+        }
+        hl.innerHTML = hl.innerHTML
+                .replaceAll("?", `<span class="hljs-keyword">?</span>`)
+                .replaceAll(":", `<span class="hljs-keyword">:</span>`);
     }
 }
