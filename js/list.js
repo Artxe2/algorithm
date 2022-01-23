@@ -44,6 +44,7 @@ const list = {
                 , [ "외벽 점검", backtracking ]
                 , [ "자물쇠와 열쇠", simulation ]
                 , [ "징검다리 건너기", parametricSearch ]
+                , [ "카드 짝 맞추기", DFS_depthFirstSearch, BFS_breadthFirstSearch ]
                 , [ "표 편집", simulation ]
                 , [ "합승 택시 요금", dijkstra ]
                 , [ "GPS", DP_dynamicProgramming ]

@@ -65,7 +65,7 @@ const pushState = (e, link, algo) => {
     const url = new URLSearchParams(document.location.search);
 
     if (link != url.get("link") || algo != url.get("algo")) {
-        history.pushState(null, null, link && algo ? URL_PATH + "?link=" + link + "&algo=" + algo : URL_PATH);
+        history.pushState(null, null, link && algo ? URL_PATH + "?link=" + link + "&algo=" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') : URL_PATH);
         showContent(link, algo);
     }
 }
