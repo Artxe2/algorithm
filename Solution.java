@@ -1,186 +1,36 @@
 class Solution {
-    public int solution(int[][] board, int r, int c) {
-        int answer = 66;
-        int prev = r * 4 + c;
-        int n = 0;
-        int index = 0;
-        int card;
-        int[] yy;
-        int[] field = new int[16];
-        int[] cost = new int[16];
-        int[] start = new int[7];
-        int[] end = new int[7];
-        boolean[] visit = new boolean[7];
-        java.util.Deque<Integer> queue = new java.util.ArrayDeque<>();
+    public int solution(int[] info, int[][] edges) {
+        int length = info.length;
+        int answer = 1;
+        int sheep = 1;
+        int wolf = 0;
+        int[][] graph = toGraph(length, edges);
+        java.util.Deque<Integer> wolfs = new java.util.ArrayDeque<>();
 
-        for (int i = 1; i < 7; i++) {
-            visit[i] = true;
-        }
-        for (int y = 0; y < 4; y++) {
-            yy = board[y];
-            for (int x = 0; x < 4; x++) {
-                card = yy[x];
-                if (card > 0) {
-                    if (visit[card]) {
-                        n++;
-                        visit[card] = false;
-                        start[card] = index;
-                    } else {
-                        end[card] = index;
-                    }
-                    field[index] = card;
-                }
-                index++;
-            }
-        }
-        for (int i = 1; i < 7; i++) {
-            if (!visit[i]) {
-                answer = backtracking(field, cost, start, end, visit,
-                        n, prev, i, answer, 0, queue);
-                answer = backtracking(field, cost, end, start, visit,
-                        n, prev, i, answer, 0, queue);
-            }
-        }
-        return answer + n * 2;
-    }
-
-    int backtracking(int[] field, int[] cost, int[] start, int[] end, boolean[] visit,
-            int n, int prev, int index, int answer, int count,
-            java.util.Deque<Integer> queue) {
-        int from = start[index];
-        int to = end[index];
-
-        count += bfs(field, cost, prev, from, queue);
-        count += bfs(field, cost, from, to, queue);
-        if (--n == 0) {
-            return Math.min(count, answer);
-        } else if (count < answer) {
-            field[from] = 0;
-            field[to] = 0;
-            visit[index] = true;
-            for (int i = 1; i < 7; i++) {
-                if (!visit[i]) {
-                    answer = backtracking(field, cost, start, end, visit,
-                            n, to, i, answer, count, queue);
-                    answer = backtracking(field, cost, end, start, visit,
-                            n, to, i, answer, count, queue);
-                }
-            }
-            field[from] = index;
-            field[to] = index;
-            visit[index] = false;
-        }
         return answer;
     }
 
-    int bfs(int[] field, int[] cost, int from, int to,
-            java.util.Deque<Integer> queue) {
-        if (from == to) {
-            return 0;
+    int[][] toGraph(int length, int[][] edges) {
+        int a0;
+        int a1;
+        int[] visit = new int[length];
+        int[][] graph = new int[length][];
+
+        for (int[] a : edges) {
+            visit[a[0]]++;
+            visit[a[1]]++;
         }
-
-        int curr;
-        int c;
-        int move;
-
-        queue.clear();
-        fill(cost, 16, 16);
-        cost[from] = 0;
-        queue.add(from);
-        for (;;) {
-            curr = queue.pop();
-            c = cost[curr] + 1;
-            if (curr < 12) {
-                move = curr + 4;
-                if (move == to) {
-                    return c;
-                }
-                if (cost[move] > c) {
-                    cost[move] = c;
-                    queue.add(move);
-                }
-                if (move < 12 && field[move] == 0) {
-                    do {
-                        move += 4;
-                    } while (move < 12 && field[move] == 0);
-                    if (move == to) {
-                        return c;
-                    }
-                    if (cost[move] > c) {
-                        cost[move] = c;
-                        queue.add(move);
-                    }
-                }
-
-            }
-            if (curr > 3) {
-                move = curr - 4;
-                if (move == to) {
-                    return c;
-                }
-                if (cost[move] > c) {
-                    cost[move] = c;
-                    queue.add(move);
-                }
-                if (move > 3 && field[move] == 0) {
-                    do {
-                        move -= 4;
-                    } while (move > 3 && field[move] == 0);
-                    if (move == to) {
-                        return c;
-                    }
-                    if (cost[move] > c) {
-                        cost[move] = c;
-                        queue.add(move);
-                    }
-                }
-
-            }
-            if (curr % 4 < 3) {
-                move = curr + 1;
-                if (move == to) {
-                    return c;
-                }
-                if (cost[move] > c) {
-                    cost[move] = c;
-                    queue.add(move);
-                }
-                if (move % 4 < 3 && field[move] == 0) {
-                    do {
-                        move++;
-                    } while (move % 4 < 3 && field[move] == 0);
-                    if (move == to) {
-                        return c;
-                    }
-                    if (cost[move] > c) {
-                        cost[move] = c;
-                        queue.add(move);
-                    }
-                }
-            }
-            if (curr % 4 > 0) {
-                move = curr - 1;
-                if (move == to) {
-                    return c;
-                }
-                if (cost[move] > c) {
-                    cost[move] = c;
-                    queue.add(move);
-                }
-                if (move % 4 > 0 && field[move] == 0) {
-                    do {
-                        move--;
-                    } while (move % 4 > 0 && field[move] == 0);
-                    if (move == to) {
-                        return c;
-                    }
-                    if (cost[move] > c) {
-                        cost[move] = c;
-                        queue.add(move);
-                    }
-                }
-            }
+        for (int i = 0; i < length; i++) {
+            graph[i] = new int[visit[i]];
         }
+        fill(visit, length, 0);
+        for (int[] a : edges) {
+            a0 = a[0];
+            a1 = a[1];
+            graph[a0][visit[a0]++] = a1;
+            graph[a1][visit[a1]++] = a0;
+        }
+        return graph;
     }
 
     void fill(int[] array, int length, int value) {
@@ -194,5 +44,9 @@ class Solution {
         if (index < length) {
             System.arraycopy(array, 0, array, index, length - index);
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Solution().solution(new int[] {0,0,1,1,1,0,1,0,1,0,1,1}, new com.google.gson.Gson().fromJson("[[0,1],[1,2],[1,4],[0,8],[8,7],[9,10],[9,11],[4,3],[6,5],[4,6],[8,9]]", int[][].class)));
     }
 }
