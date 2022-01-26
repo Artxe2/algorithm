@@ -1,7 +1,6 @@
 class Solution {
-    int answer = 66;
-
     public int solution(int[][] board, int r, int c) {
+        int answer = 66;
         int prev = r * 4 + c;
         int n = 0;
         int index = 0;
@@ -36,47 +35,46 @@ class Solution {
         }
         for (int i = 1; i < 7; i++) {
             if (!visit[i]) {
-                backtracking(field, cost, start, end, visit, n, prev, i, 0, queue);
-                backtracking(field, cost, end, start, visit, n, prev, i, 0, queue);
+                answer = backtracking(field, cost, start, end, visit,
+                        n, prev, i, answer, 0, queue);
+                answer = backtracking(field, cost, end, start, visit,
+                        n, prev, i, answer, 0, queue);
             }
         }
         return answer + n * 2;
     }
 
-    void backtracking(int[] field, int[] cost, int[] start, int[] end, boolean[] visit,
-            int n, int prev, int index, int count, java.util.Deque<Integer> queue) {
+    int backtracking(int[] field, int[] cost, int[] start, int[] end, boolean[] visit,
+            int n, int prev, int index, int answer, int count,
+            java.util.Deque<Integer> queue) {
         int from = start[index];
         int to = end[index];
 
-        System.out.print(prev + ":" + from + ":" + to + ":: " + count + " -> ");
         count += bfs(field, cost, prev, from, queue);
-        System.out.print(count + " -> ");
         count += bfs(field, cost, from, to, queue);
-        System.out.println(count);
         if (--n == 0) {
-            System.out.println("::");
-            if (count < answer) {
-                answer = count;
-            }
-        } else {
+            return Math.min(count, answer);
+        } else if (count < answer) {
             field[from] = 0;
             field[to] = 0;
             visit[index] = true;
             for (int i = 1; i < 7; i++) {
                 if (!visit[i]) {
-                    backtracking(field, cost, start, end, visit,
-                            n, to, i, count, queue);
-                    backtracking(field, cost, end, start, visit,
-                            n, to, i, count, queue);
+                    answer = backtracking(field, cost, start, end, visit,
+                            n, to, i, answer, count, queue);
+                    answer = backtracking(field, cost, end, start, visit,
+                            n, to, i, answer, count, queue);
                 }
             }
             field[from] = index;
             field[to] = index;
             visit[index] = false;
         }
+        return answer;
     }
 
-    int bfs(int[] field, int[] cost, int from, int to, java.util.Deque<Integer> queue) {
+    int bfs(int[] field, int[] cost, int from, int to,
+            java.util.Deque<Integer> queue) {
         if (from == to) {
             return 0;
         }
@@ -196,12 +194,5 @@ class Solution {
         if (index < length) {
             System.arraycopy(array, 0, array, index, length - index);
         }
-    }
-
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        com.google.gson.Gson g = new com.google.gson.Gson();
-        
-        System.out.println(s.solution(g.fromJson("[[1,0,0,3],[2,0,0,0],[0,0,0,2],[3,0,1,0]]", int[][].class), 1, 0));
     }
 }
