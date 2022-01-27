@@ -5,9 +5,9 @@ const _logo = document.querySelector("#logo");
 const _contents = document.querySelector("#contents");
 const _list = document.querySelector("#list");
 
-window.onpopstate = () => {
-    readUrl();
-}
+// window.onpopstate = () => {
+//     readUrl();
+// }
 
 document.addEventListener('DOMContentLoaded', (e) => {
     _logo.setAttribute("href", URL_PATH);
