@@ -1,14 +1,17 @@
 const URL_PATH = "/algorithm/";
 const today = new Date();
 const _root = document.querySelector("#root");
+const _logo = document.querySelector("#logo");
 const _contents = document.querySelector("#contents");
 const _list = document.querySelector("#list");
 
 window.onpopstate = () => {
-    getUrl();
+    readUrl();
 }
+
 document.addEventListener('DOMContentLoaded', (e) => {
-    getUrl();
+    _logo.setAttribute("href", URL_PATH);
+    readUrl();
 
     var html = "<ul>"
 
@@ -16,19 +19,20 @@ document.addEventListener('DOMContentLoaded', (e) => {
         html += "<li><span class='lang' onclick='fold(event,this)'>" + lang + ": <b>" + getCount(list[lang]) + "</b></span><ul>"
         for (const site of Object.keys(list[lang])) {
             html += "<li><span class='site' onclick='fold(event,this)'>" + site + ": <b>" + getCount(list[lang][site]) + "</b></span><ul>"
-            if (site == "algorithm") {
-                for (const al of list[lang][site]) {
-                    html += `<li class='none'><a class="algo" onclick="pushState(event,'`
-                            + lang + `/` + site + `','` + al
-                            + `')">` + al.replaceAll('-', ' ') + `</a></li>`;
+            if (site === "algorithm") {
+                for (const algo of list[lang][site]) {
+                    html += `<li class='none'><a class="algo" href="` + URL_PATH
+                            + `?link=` + lang + `/` + site + `&algo=` + algo
+                            + `">` + algo + `</a></li>`;
                 }
             } else {
                 for (const diff of Object.keys(list[lang][site])) {
                     html += "<li class='none'><span class='diff' onclick='fold(event,this)'>" + diff + ": <b>" + getCount(list[lang][site][diff]) + "</b></span><ul>"
                     for (const algo of list[lang][site][diff]) {
-                        html += `<li class='none'><a class="algo" onclick="pushState(event,'`
-                                + lang + `/` + site + `/` + diff + `','` + algo[0].replaceAll(" ", "-")
-                                + `')">` + algo[0] + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
+                        html += `<li class='none'><a class="algo" href="` + URL_PATH
+                                + `?link=` + lang + `/` + site + `/` + diff + `&algo=`
+                                + algo[0].replaceAll(" ", "-").replaceAll('[', '').replaceAll(']', '').replaceAll('?', '')
+                                + `">` + algo[0] + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
                     }
                     html += "</ul></li>";
                 }
@@ -53,28 +57,39 @@ const getCount = obj => {
     return result;
 }
 
-const getUrl = () => {
+const getTitle = (link, algo) => {
+    const path = link.split("/");
+    let obj = list;
+    
+    for (const p of path) {
+        obj = obj[p];
+    }
+    if (obj[0] instanceof Array) {
+        for (const arr of obj) {
+            if (arr[0].replaceAll(" ", "-").replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') === algo) {
+                return arr[0];
+            }
+        }
+    } else {
+        for (const tt of obj) {
+            if (tt === algo) {
+                return tt;
+            }
+        }
+    }
+}
+
+const readUrl = () => {
     const url = new URLSearchParams(document.location.search);
 
     showContent(url.get("link"), url.get("algo"));
-}
-
-const pushState = (e, link, algo) => {
-    e.stopPropagation();
-
-    const url = new URLSearchParams(document.location.search);
-
-    if (link != url.get("link") || algo != url.get("algo")) {
-        history.pushState(null, null, link && algo ? URL_PATH + "?link=" + link + "&algo=" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') : URL_PATH);
-        showContent(link, algo);
-    }
 }
 
 const showContent = (link, algo) => {
     if (link && algo) {
         _root.classList = [ ];
         ajax({
-            url: URL_PATH + "md/" + link + "/" + algo.replaceAll('[', '').replaceAll(']', '').replaceAll('?', '') + ".md?" + today
+            url: URL_PATH + "md/" + link + "/" + algo + ".md?" + today
             , success: res => {
                 const md = window.markdownit().render(res)
                 let path = list;
@@ -83,7 +98,6 @@ const showContent = (link, algo) => {
                 for (const p of link.split("/")) {
                     path = path[p];
                 }
-                algo = algo.replaceAll("-", " ");
                 for (const a of path) {
                     if (a[0] === algo) {
                         for (let i = 1; i < a.length; i++) {
@@ -95,7 +109,7 @@ const showContent = (link, algo) => {
                 hash = hash + "</div>";
 
                 _contents.innerHTML = "<h3>" + link + "</h3>"
-                        + "<h1>" + algo + "</h1>"
+                        + "<h1>" + getTitle(link, algo) + "</h1>"
                         + hash + md;
                 hljs.initHighlighting.called = false;
                 hljs.highlightAll();
