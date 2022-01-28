@@ -134,6 +134,12 @@ const highlightCustom = () => {
             switch (el.innerHTML) {
                 case "class": case"public":
                     el.classList.add("prefix");
+                    break;
+                case "static":
+                    el.classList.add("prefix");
+                    break;
+                case "void":
+                    el.classList.add("hljs-type");
             }
         }
         hl.innerHTML = hl.innerHTML
