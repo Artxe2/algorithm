@@ -41,6 +41,7 @@ const list = {
                 , [ "보행자 천국", DP_dynamicProgramming ]
                 , [ "불량 사용자", DFS_depthFirstSearch ]
                 , [ "브라이언의 고민", simulation ]
+                , [ "양과 늑대", backtracking ]
                 , [ "외벽 점검", backtracking ]
                 , [ "자물쇠와 열쇠", simulation ]
                 , [ "징검다리 건너기", parametricSearch ]

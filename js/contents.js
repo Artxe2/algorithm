@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
     var html = "<ul>"
 
     for (const lang of Object.keys(list)) {
-        html += "<li><span class='lang' onclick='fold(event,this)'>" + lang + ": <b>" + getCount(list[lang]) + "</b></span><ul>"
+        html += "<li><span class='lang " + lang  + "' onclick='fold(event,this)'>"
+                + lang + ": <b>" + getCount(list[lang]) + "</b></span><ul>"
         for (const site of Object.keys(list[lang])) {
-            html += "<li><span class='site' onclick='fold(event,this)'>" + site + ": <b>" + getCount(list[lang][site]) + "</b></span><ul>"
+            html += "<li><span class='site " + site  + "' onclick='fold(event,this)'>" 
+                    + site + ": <b>" + getCount(list[lang][site]) + "</b></span><ul>"
             if (site === "algorithm") {
                 for (const algo of list[lang][site]) {
                     html += `<li class='none'><a class="algo" href="` + URL_PATH
@@ -27,12 +29,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 }
             } else {
                 for (const diff of Object.keys(list[lang][site])) {
-                    html += "<li class='none'><span class='diff' onclick='fold(event,this)'>" + diff + ": <b>" + getCount(list[lang][site][diff]) + "</b></span><ul>"
+                    html += "<li class='none'><span class='diff " + diff
+                            + "' onclick='fold(event,this)'>" + diff + ": <b>"
+                            + getCount(list[lang][site][diff])
+                            + "</b></span><ul>"
                     for (const algo of list[lang][site][diff]) {
                         html += `<li class='none'><a class="algo" href="` + URL_PATH
                                 + `?link=` + lang + `/` + site + `/` + diff + `&algo=`
-                                + algo[0].replaceAll(" ", "-").replaceAll('[', '').replaceAll(']', '').replaceAll('?', '')
-                                + `">` + algo[0] + (algo[1] ? ` # ` + algo[1] : ``) + `</a></li>`;
+                                + algo[0].replaceAll(" ", "-").replaceAll('[', '')
+                                        .replaceAll(']', '').replaceAll('?', '')
+                                + `">` + algo[0] + (algo[1] ? ` # ` + algo[1] : ``)
+                                + `</a></li>`;
                     }
                     html += "</ul></li>";
                 }
@@ -62,6 +69,13 @@ const getTitle = (link, algo) => {
     let obj = list;
     
     for (const p of path) {
+        console.log(p)
+        const lis = document.querySelector("." + p)
+                .parentNode.querySelectorAll(":scope > ul > li");
+
+        for (const li of lis) {
+            li.className = li.className.replace("none", "").trim();
+        }
         obj = obj[p];
     }
     if (obj[0] instanceof Array) {
