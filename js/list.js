@@ -42,6 +42,7 @@ const list = {
                 , [ "불량 사용자", DFS_depthFirstSearch ]
                 , [ "브라이언의 고민", simulation ]
                 , [ "양과 늑대", backtracking ]
+                , [ "블록 이동하기", BFS_breadthFirstSearch ]
                 , [ "외벽 점검", backtracking ]
                 , [ "자물쇠와 열쇠", simulation ]
                 , [ "징검다리 건너기", parametricSearch ]
