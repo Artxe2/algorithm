@@ -1,128 +1,117 @@
 class Solution {
-    public int solution(int[] info, int[][] edges) {
-        int length = info.length;
-        int answer = 0;
-        int sheep = 0;
-        int wolf = 1;
-        int curr;
-        int[][] graph = toGraph(length, edges);
-        boolean[] visit = new boolean[length];
-        java.util.Deque<Integer> sheeps = new java.util.ArrayDeque<>();
-        java.util.Deque<Integer> wolfs = new java.util.ArrayDeque<>();
-        
-        sheeps.add(0);
-        do {
-            answer++;
-            sheep++;
-            curr = sheeps.pop();
-            visit[curr] = true;
-            for (int i : graph[curr]) {
-                if (!visit[i]) {
-                    if (info[i] == 0) {
-                        sheeps.add(i);
-                    } else {
-                        wolfs.add(i);
-                    }
-                }
-            }
-        } while (!sheeps.isEmpty());
-        
-        int count = answer;
+    public int solution(int[][] board, int[] aloc, int[] bloc) {
+        int length = 0;
+        int ym = board[0].length;
+        int a = aloc[0] * ym + aloc[1];
+        int b = bloc[0] * ym + bloc[1];
+        boolean[] scaffolding = new boolean[board.length * ym];
 
-        length = wolfs.size();
-        if (length > 0 && answer > 1) {
-            for (int i = 0; i < length; i++) {
-                curr = wolfs.pop();
-                answer = Math.max(answer,
-                        backtracking(info, graph, count, sheep, wolf, curr, 
-                                visit, sheeps, wolfs));
-                wolfs.add(curr);
+        for (int[] r : board) {
+            for (int i : r) {
+                scaffolding[length++] = i > 0 ? true : false;
             }
         }
-        return answer;
+        return Math.abs(dfs(scaffolding, length, ym, a, b, 0));
     }
 
-    int backtracking(int[] info, int[][] graph,
-            int answer, int sheep, int wolf, int prev,
-            boolean[] visit, java.util.Deque<Integer> sheeps,
-            java.util.Deque<Integer> wolfs) {
-        int curr;
-        int s = 0;
-        int w = 0;
+    int dfs(boolean[] scaffolding, int length, int ym, int a, int b, int count) {
+        if (!scaffolding[a]) {
+            return -count;
+        }
 
-        visit[prev] = true;
-        for (int i : graph[prev]) {
-            if (!visit[i]) {
-                if (info[i] == 0) {
-                    sheeps.add(i);
-                    s++;
+        int turn = 9;
+        int temp;
+        boolean isWinnable = false;
+
+        scaffolding[a] = false;
+        if (a >= ym && scaffolding[a - ym]) {
+            temp = dfs(scaffolding, length, ym, b, a - ym, count + 1);
+            if (!isWinnable) {
+                if (temp > 0) {
+                    isWinnable = true;
+                    turn = temp;
                 } else {
-                    wolfs.add(i);
-                    w++;
+                    turn = Math.min(turn, temp);
                 }
+            } else if (temp > 0) {
+                turn = Math.min(turn, temp);
+            }
+            if (count == 0) {
+                System.out.println(temp);
             }
         }
-
-        int count = answer;
-        int length = wolfs.size();
-
-        if (!sheeps.isEmpty()) {
-            curr = sheeps.pop();
-            answer = Math.max(answer,
-                    backtracking(info, graph, count + 1, sheep + 1, wolf, curr, 
-                            visit, sheeps, wolfs));
-            if (s > 1) {
-                sheeps.pollLast();
+        if (a + ym < length && scaffolding[a + ym]) {
+            temp = dfs(scaffolding, length, ym, b, a + ym, count + 1);
+            if (!isWinnable) {
+                if (temp > 0) {
+                    isWinnable = true;
+                    turn = temp;
+                } else {
+                    turn = Math.min(turn, temp);
+                }
+            } else if (temp > 0) {
+                turn = Math.min(turn, temp);
             }
-        } else if (length > 0 && answer > ++wolf) {
-            for (int i = 0; i < length; i++) {
-                curr = wolfs.pop();
-                answer = Math.max(answer,
-                        backtracking(info, graph, count, sheep, wolf, curr, 
-                                visit, sheeps, wolfs));
-                wolfs.add(curr);
+            if (count == 0) {
+                System.out.println(temp);
             }
         }
-        for (int i = 0; i < w; i++) {
-            wolfs.pollLast();
+        if (a % ym > 0 && scaffolding[a - 1]) {
+            temp = dfs(scaffolding, length, ym, b, a - 1, count + 1);
+            if (!isWinnable) {
+                if (temp > 0) {
+                    isWinnable = true;
+                    turn = temp;
+                } else {
+                    turn = Math.min(turn, temp);
+                }
+            } else if (temp > 0) {
+                turn = Math.min(turn, temp);
+            }
+            if (count == 0) {
+                System.out.println(temp);
+            }
         }
-        visit[prev] = false;
-        return answer;
+        if (a % ym + 1 < ym && scaffolding[a + 1]) {
+            temp = dfs(scaffolding, length, ym, b, a + 1, count + 1);
+            if (!isWinnable) {
+                if (temp > 0) {
+                    isWinnable = true;
+                    turn = temp;
+                } else {
+                    turn = Math.min(turn, temp);
+                }
+            } else if (temp > 0) {
+                turn = Math.min(turn, temp);
+            }
+            if (count == 0) {
+                System.out.println(temp);
+            }
+        }
+        scaffolding[a] = true;
+        return turn == 9 ? -count : -turn;
     }
 
-    int[][] toGraph(int length, int[][] edges) {
-        int a0;
-        int a1;
-        int[] visit = new int[length];
-        int[][] graph = new int[length][];
-
-        for (int[] a : edges) {
-            visit[a[0]]++;
-            visit[a[1]]++;
-        }
-        for (int i = 0; i < length; i++) {
-            graph[i] = new int[visit[i]];
-        }
-        fill(visit, length, 0);
-        for (int[] a : edges) {
-            a0 = a[0];
-            a1 = a[1];
-            graph[a0][visit[a0]++] = a1;
-            graph[a1][visit[a1]++] = a0;
-        }
-        return graph;
-    }
-
-    void fill(int[] array, int length, int value) {
-        int index = 1;
-
-        array[0] = value;
-        do {
-            System.arraycopy(array, 0, array, index, index);
-            index += index;
-        } while (index + index < length);
-        if (index < length) {
-            System.arraycopy(array, 0, array, index, length - index);
-        }
+    public static void main(String[] args) {
+        int answer = new Solution().solution(
+                Gson.fromJson(int[][].class, "[[1, 1, 1], [1, 1, 1], [1, 1, 1]]"),
+                new int[] { 1, 0 },
+                new int[] { 1, 2 });
+        System.out.println(answer + ": " + (answer == 5));
+        answer = new Solution().solution(
+                Gson.fromJson(int[][].class, "[[1, 1, 1], [1, 0, 1], [1, 1, 1]]"),
+                new int[] { 1, 0 },
+                new int[] { 1, 2 });
+        System.out.println(answer + ": " + (answer == 4));
+        answer = new Solution().solution(
+                Gson.fromJson(int[][].class, "[[1, 1, 1, 1, 1]]"),
+                new int[] { 0, 0 },
+                new int[] { 0, 4 });
+        System.out.println(answer + ": " + (answer == 4));
+        answer = new Solution().solution(
+                Gson.fromJson(int[][].class, "[[1]]"),
+                new int[] { 0, 0 },
+                new int[] { 0, 0 });
+        System.out.println(answer + ": " + (answer == 0));
     }
 }
