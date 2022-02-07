@@ -15,6 +15,7 @@ const hashMap = "hash map";
 const hashSet = "hash set";
 const minimax = "minimax";
 const parametricSearch = "parametric search";
+const prefixSum = "prefix sum";
 const priorityQueue = "priority queue";
 const simulation = "simulation";
 const slidingWindow = "sliding window";
@@ -35,7 +36,7 @@ const list = {
                 , [ "[1차] 추석 트래픽", simulation ]
                 , [ "기둥과 보 설치", simulation ]
                 , [ "경주로 건설", BFS_breadthFirstSearch ]
-                , [ "광고 삽입", slidingWindow ]
+                , [ "광고 삽입", slidingWindow, prefixSum ]
                 , [ "길 찾기 게임", binaryTree, DFS_depthFirstSearch, sort ]
                 , [ "리틀 프렌즈 사천성", greedyAlgorithm ]
                 , [ "보석 쇼핑", twoPointers ]
@@ -49,6 +50,7 @@ const list = {
                 , [ "자물쇠와 열쇠", simulation ]
                 , [ "징검다리 건너기", parametricSearch ]
                 , [ "카드 짝 맞추기", DFS_depthFirstSearch, BFS_breadthFirstSearch ]
+                , [ "파괴되지 않은 건물", prefixSum ]
                 , [ "표 편집", simulation ]
                 , [ "합승 택시 요금", dijkstra ]
                 , [ "GPS", DP_dynamicProgramming ]
