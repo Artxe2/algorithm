@@ -1,4 +1,6 @@
 public class PrintArray {
+    private PrintArray() {}
+    
     static final void print(boolean[] array) {
         if (array == null) {
             System.out.println("null");

@@ -13,6 +13,7 @@ const graph = "graph";
 const greedyAlgorithm = "greedy algorithm";
 const hashMap = "hash map";
 const hashSet = "hash set";
+const minimax = "minimax";
 const parametricSearch = "parametric search";
 const priorityQueue = "priority queue";
 const simulation = "simulation";
@@ -41,6 +42,7 @@ const list = {
                 , [ "보행자 천국", DP_dynamicProgramming ]
                 , [ "불량 사용자", DFS_depthFirstSearch ]
                 , [ "브라이언의 고민", simulation ]
+                , [ "사라지는 발판", minimax, DFS_depthFirstSearch ]
                 , [ "양과 늑대", backtracking ]
                 , [ "블록 이동하기", BFS_breadthFirstSearch ]
                 , [ "외벽 점검", backtracking ]
