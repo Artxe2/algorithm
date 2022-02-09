@@ -6,23 +6,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch BoyerMoore",
-            "request": "launch",
-            "mainClass": "BoyerMoore",
-            "projectName": "algorithm_f293666d"
-        },
-        {
-            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Launch Solution",
-            "request": "launch",
-            "mainClass": "Solution",
-            "projectName": "algorithm_f293666d"
         }
     ]
 }

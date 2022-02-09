@@ -1,3 +1,4 @@
+```java
 class BoyerMoore {
     public BoyerMoore() {
         java.util.Random random = new java.util.Random();
@@ -36,7 +37,8 @@ class BoyerMoore {
         int badCharacter[] = makeBadCharacter(searchStr, sLength);
         int goodSuffix[] = makeGoodSuffix(searchStr, sLength);
         int count = 0;
-        int index = indexOf(valueStr, searchStr, vLength, sLength, 0, badCharacter, goodSuffix);
+        int index = indexOf(valueStr, searchStr, vLength, sLength, 0,
+                badCharacter, goodSuffix);
 
         while (index >= 0) {
             count++;
@@ -129,3 +131,4 @@ class BoyerMoore {
         }
     }
 }
+```

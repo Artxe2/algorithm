@@ -246,6 +246,7 @@ const list = {
         }
         , algorithm: [
             "Backtracking.java"
+            , "BoyerMoore.java"
             , "MergeSort.java"
             , "ParametricSearch.java"
             , "PriorityQueue.java"
