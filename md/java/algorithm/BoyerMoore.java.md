@@ -5,114 +5,135 @@ class BoyerMoore {
 
         char[] valueStr = new char[10000000];
         for (int i = 0; i < valueStr.length; i++) {
-            valueStr[i] = (char) ('a' + random.nextInt(26));
+            valueStr[i] = (char) ('a' + random.nextInt(6));
         }
-        char[] searchStr = new char[4 + random.nextInt(4)];
-        for (int i = 0; i < searchStr.length; i++) {
-            searchStr[i] = (char) ('a' + random.nextInt(26));
+        char[] patternStr = new char[6 + random.nextInt(6)];
+        for (int i = 0; i < patternStr.length; i++) {
+            patternStr[i] = (char) ('a' + random.nextInt(4));
         }
 
         long start = System.nanoTime();
 
-        int count = boyerMoore(valueStr, searchStr);
+        int count = boyerMoore(valueStr, patternStr);
 
         double time = (System.nanoTime() - start) / 1000000.0;
 
-        System.out.println("boyerMoore: " + time
-                + "ms { target: " + new String(searchStr) + ", count: " + count + " }");
+        int jCount = javaIndexOf(valueStr, patternStr);
+
+        System.out.println("boyerMoore: " + time + "ms, count: "
+                + count + " == " + jCount);
+        System.out.println("pattern: " + new String(patternStr));
+    }
+
+    int javaIndexOf(char[] valueStr, char[] patternStr) {
+        int vLength = valueStr.length;
+        int pLength = patternStr.length;
+
+        if (pLength == 0 || vLength < pLength) {
+            return 0;
+        }
+
+        String value = new String(valueStr);
+        String pattern = new String(patternStr);
+        int count = 0;
+        int index = value.indexOf(pattern);
+
+        while (index >= 0) {
+            count++;
+            index = value.indexOf(pattern, index + pLength);
+        }
+        return count;
     }
 
     public static void main(String[] args) {
         new BoyerMoore();
     }
 
-    int boyerMoore(char[] valueStr, char[] searchStr) {
+    int boyerMoore(char[] valueStr, char[] patternStr) {
         int vLength = valueStr.length;
-        int sLength = searchStr.length;
+        int pLength = patternStr.length;
 
-        if (sLength == 0 || vLength < sLength) {
+        if (pLength == 0 || vLength < pLength) {
             return 0;
         }
 
-        int badCharacter[] = makeBadCharacter(searchStr, sLength);
-        int goodSuffix[] = makeGoodSuffix(searchStr, sLength);
+        int badCharacter[] = makeBadCharacter(patternStr, pLength);
+        int goodSuffix[] = makeGoodSuffix(patternStr, pLength);
         int count = 0;
-        int index = indexOf(valueStr, searchStr, vLength, sLength, 0,
+        int index = indexOf(valueStr, patternStr, vLength, pLength, 0,
                 badCharacter, goodSuffix);
 
         while (index >= 0) {
             count++;
-            index = indexOf(valueStr, searchStr, vLength, sLength, index + sLength,
+            index = indexOf(valueStr, patternStr, vLength, pLength, index + pLength,
                     badCharacter, goodSuffix);
         }
         return count;
     }
 
-    int indexOf(char[] valueStr, char[] searchStr, int vLength, int sLength, int start,
+    int indexOf(char[] valueStr, char[] patternStr, 
+            int vLength, int pLength, int start,
             int badCharacter[], int goodSuffix[]) {
-        start += sLength - 1;
+        start += pLength - 1;
         if (start < vLength) {
             int v;
             int s;
 
             do {
                 v = start;
-                s = sLength - 1;
-                while (valueStr[v] == searchStr[s]) {
+                s = pLength - 1;
+                while (valueStr[v] == patternStr[s]) {
                     if (s-- == 0) {
                         return v;
                     }
                     v--;
                 }
-                start += Math.max(badCharacter[valueStr[v]], goodSuffix[s]);
+                start = Math.max(v + badCharacter[valueStr[v]], start + goodSuffix[s]);
             } while (start < vLength);
         }
         return -1;
     }
 
-    int[] makeBadCharacter(char[] searchStr, int sLength) {
+    int[] makeBadCharacter(char[] patternStr, int pLength) {
         int index = 0;
         int[] table = new int[123];
 
-        fill(table, 123, sLength);
+        fill(table, 123, pLength);
         do {
-            table[searchStr[index++]] = sLength - index;
-        } while (index < sLength);
+            table[patternStr[index++]] = pLength - index;
+        } while (index < pLength);
         return table;
     }
 
-    int[] makeGoodSuffix(char[] searchStr, int sLength) {
-        int index = (sLength - 1) / 2;
-        int ref;
-        int[] table = new int[sLength];
+    int[] makeGoodSuffix(char[] patternStr, int pLength) {
+        int index = 1;
+        int[] table = new int[pLength];
 
-        fill(table, sLength, 1);
-        while (++index < sLength) {
-            ref = repeatOf(searchStr, index, sLength);
-            if (ref >= 0) {
-                table[index - 1] = index - ref;
-            }
+        fill(table, index, 1);
+        while (++index < pLength) {
+            table[index - 1] = repeatOf(patternStr, index, pLength);
         }
+        table[index - 1] = 1;
         return table;
     }
 
-    int repeatOf(char[] searchStr, int index, int sLength) {
-        int ref = index - (sLength - index);
+    int repeatOf(char[] patternStr, int index, int pLength) {
+        int ref = index - 1;
 
         do {
-            if (isRepeat(searchStr, sLength, ref, index)) {
-                return ref;
+            if (isRepeat(patternStr, pLength, ref, index)) {
+                return index - ref;
             }
         } while (--ref >= 0);
-        return -1;
+        return 1;
     }
 
-    boolean isRepeat(char[] searchStr, int sLength, int i, int j) {
+    boolean isRepeat(char[] patternStr, int pLength, int i, int j) {
         do {
-            if (searchStr[i++] != searchStr[j++]) {
+            if (patternStr[i++] != patternStr[j++]) {
                 return false;
             }
-        } while (j < sLength);
+        } while (j < pLength);
         return true;
     }
 
