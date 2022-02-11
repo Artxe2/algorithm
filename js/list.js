@@ -22,6 +22,7 @@ const slidingWindow = "sliding window";
 const sort = "sort";
 const twoPointers = "two pointers";
 const recursion = "recursion"
+const regularExpression = "regular expression";
 
 const list = {
     java: {
@@ -39,6 +40,7 @@ const list = {
                 , [ "광고 삽입", slidingWindow, prefixSum ]
                 , [ "길 찾기 게임", binaryTree, DFS_depthFirstSearch, sort ]
                 , [ "리틀 프렌즈 사천성", greedyAlgorithm ]
+                , [ "매칭 점수", regularExpression, hashMap ]
                 , [ "보석 쇼핑", twoPointers ]
                 , [ "보행자 천국", DP_dynamicProgramming ]
                 , [ "불량 사용자", DFS_depthFirstSearch ]
