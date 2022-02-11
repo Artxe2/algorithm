@@ -94,7 +94,8 @@ const list = {
                 [ "방의 개수", simulation ]
             ]
             , level_4: [
-                [ "도둑질", DP_dynamicProgramming ]
+                [ "단어 퍼즐", DP_dynamicProgramming ]
+                , [ "도둑질", DP_dynamicProgramming ]
                 , [ "사칙연산", branchAndBound ]
                 , [ "지형 이동", BFS_breadthFirstSearch ]
                 , [ "징검다리", parametricSearch ]
