@@ -95,6 +95,7 @@ const list = {
             ]
             , level_4: [
                 [ "도둑질", DP_dynamicProgramming ]
+                , [ "사칙연산", branchAndBound ]
                 , [ "지형 이동", BFS_breadthFirstSearch ]
                 , [ "징검다리", parametricSearch ]
             ]
