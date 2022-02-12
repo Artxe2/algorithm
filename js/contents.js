@@ -1,26 +1,26 @@
 const URL_PATH = "/algorithm/";
-const today = new Date();
-const _root = document.querySelector("#root");
-const _logo = document.querySelector("#logo");
-const _contents = document.querySelector("#contents");
-const _list = document.querySelector("#list");
+const today = new Date()
+const _root = document.querySelector("#root")
+const _logo = document.querySelector("#logo")
+const _contents = document.querySelector("#contents")
+const _list = document.querySelector("#list")
 
 document.addEventListener('DOMContentLoaded', (e) => {
-    _logo.setAttribute("href", URL_PATH);
-    readUrl();
-});
+    _logo.setAttribute("href", URL_PATH)
+    readUrl()
+})
 
 const fold = (e, el) => {
-    e.stopPropagation();
+    e.stopPropagation()
 
-    const lis = el.parentNode.querySelectorAll(':scope > ul > li');
+    const lis = el.parentNode.querySelectorAll(':scope > ul > li')
 
     for (const li of lis) {
 
         if (li.className.indexOf("none") >= 0) {
-            li.className = li.className.replace("none", "").trim();
+            li.className = li.className.replace("none", "").trim()
         } else {
-            li.className = (li.className + " none").trim();
+            li.className = (li.className + " none").trim()
         }
     }
 }
@@ -32,7 +32,7 @@ const getCount = obj => {
     var result = 0;
 
     for (const key of Object.keys(obj)) {
-        result += getCount(obj[key]);
+        result += getCount(obj[key])
     }
     return result;
 }
@@ -54,37 +54,46 @@ const getTitle = (obj, algo) => {
 }
 
 const highlightCustom = () => {
-    const hljs = document.querySelectorAll('.language-java.hljs');
+    const hljs = document.querySelectorAll('.language-java.hljs')
 
     for (const hl of hljs) {
-        const keywords = hl.querySelectorAll('.hljs-keyword');
+        const keywords = hl.querySelectorAll('.hljs-keyword')
 
         for (const el of keywords) {
             switch (el.innerHTML) {
                 case "class": case"public":
-                    el.classList.add("prefix");
+                    el.classList.add("prefix")
                     break;
                 case "static":
-                    el.classList.add("prefix");
+                    el.classList.add("prefix")
                     break;
                 case "void":
-                    el.classList.add("hljs-type");
+                    el.classList.add("hljs-type")
             }
         }
         hl.innerHTML = hl.innerHTML
                 .replaceAll("?", `<span class="hljs-keyword">?</span>`)
-                .replaceAll(":", `<span class="hljs-keyword">:</span>`);
+                .replaceAll(":", `<span class="hljs-keyword">:</span>`)
+                .replaceAll(`<span class="hljs-meta">@Override</span>`,
+                        `@<span class="hljs-meta">Override</span>`)
+        const strings = hl.querySelectorAll('.hljs-string')
+        for (const el of strings) {
+            console.log(el.innerHTML)
+            el.innerHTML = el.innerHTML
+                .replaceAll(`<span class="hljs-keyword">?</span>`, "?")
+                .replaceAll(`<span class="hljs-keyword">:</span>`, ":")
+        }
     }
 }
 
 const parseUrlSafe = url => url.replaceAll(" ", "-")
-        .replaceAll('[', '').replaceAll(']', '').replaceAll('?', '');
+        .replaceAll('[', '').replaceAll(']', '').replaceAll('?', '')
 
 const readUrl = () => {
-    const url = new URLSearchParams(document.location.search);
+    const url = new URLSearchParams(document.location.search)
 
-    showList();
-    showContent(url.get("link"), url.get("algo"));
+    showList()
+    showContent(url.get("link"), url.get("algo"))
 }
 
 const showContent = (link, algo) => {
@@ -114,11 +123,11 @@ const showContent = (link, algo) => {
                         + "<h1>" + getTitle(unfoldList(link), algo) + "</h1>"
                         + hash + md;
                 hljs.initHighlighting.called = false;
-                hljs.highlightAll();
-                highlightCustom();
-                window.scrollTo(0, 0);
+                hljs.highlightAll()
+                highlightCustom()
+                window.scrollTo(0, 0)
             }
-        });
+        })
     } else {
         _contents.innerHTML = "";
         _root.classList = [ "reverse" ];
@@ -165,15 +174,15 @@ const showList = () => {
 }
 
 const unfoldList = link => {
-    const path = link.split("/");
+    const path = link.split("/")
     let obj = list;
 
     for (const p of path) {
         const lis = document.querySelector("." + p)
-                .parentNode.querySelectorAll(":scope > ul > li");
+                .parentNode.querySelectorAll(":scope > ul > li")
 
         for (const li of lis) {
-            li.className = li.className.replace("none", "").trim();
+            li.className = li.className.replace("none", "").trim()
         }
         obj = obj[p];
     }
