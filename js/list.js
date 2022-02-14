@@ -13,6 +13,7 @@ const graph = "graph";
 const greedyAlgorithm = "greedy algorithm";
 const hashMap = "hash map";
 const hashSet = "hash set";
+const implementation = "implementation";
 const minimax = "minimax";
 const parametricSearch = "parametric search";
 const prefixSum = "prefix sum";
@@ -33,18 +34,18 @@ const list = {
                 [ "4단 고음", backtracking ]
             ]
             , kakao_level_3: [
-                [ "[1차] 셔틀버스", simulation ]
-                , [ "[1차] 추석 트래픽", simulation ]
-                , [ "기둥과 보 설치", simulation ]
+                [ "[1차] 셔틀버스", greedyAlgorithm, priorityQueue ]
+                , [ "[1차] 추석 트래픽", greedyAlgorithm ]
                 , [ "경주로 건설", BFS_breadthFirstSearch ]
                 , [ "광고 삽입", slidingWindow, prefixSum ]
+                , [ "기둥과 보 설치", implementation ]
                 , [ "길 찾기 게임", binaryTree, DFS_depthFirstSearch, sort ]
-                , [ "리틀 프렌즈 사천성", greedyAlgorithm ]
+                , [ "리틀 프렌즈 사천성", greedyAlgorithm, hashMap, sort ]
                 , [ "매칭 점수", regularExpression, hashMap ]
                 , [ "보석 쇼핑", twoPointers ]
                 , [ "보행자 천국", DP_dynamicProgramming ]
                 , [ "불량 사용자", DFS_depthFirstSearch ]
-                , [ "브라이언의 고민", simulation ]
+                , [ "브라이언의 고민", implementation ]
                 , [ "사라지는 발판", minimax, DFS_depthFirstSearch ]
                 , [ "양과 늑대", backtracking ]
                 , [ "블록 이동하기", BFS_breadthFirstSearch ]
@@ -71,7 +72,7 @@ const list = {
                 , [ "메뉴 리뉴얼", backtracking ]
                 , [ "문자열 압축", simulation ]
                 , [ "수식 최대화", DFS_depthFirstSearch ]
-                , [ "순위 검색", parametricSearch ]
+                , [ "순위 검색", parametricSearch, sort ]
                 , [ "양궁대회", DFS_depthFirstSearch, branchAndBound ]
                 , [ "오픈채팅방", simulation ]
                 , [ "주차 요금 계산", hashMap ]
@@ -91,7 +92,7 @@ const list = {
                 , [ "키패드 누르기", simulation ]
             ]
             , level_5: [
-                [ "방의 개수", simulation ]
+                [ "방의 개수", graph, hashMap, hashSet ]
             ]
             , level_4: [
                 [ "단어 퍼즐", DP_dynamicProgramming ]
@@ -132,7 +133,7 @@ const list = {
                 , [ "줄 서는 방법", recursion ]
                 , [ "최고의 집합", simulation ]
                 , [ "풍선 터뜨리기", simulation ]
-                , [ "퍼즐 조각 채우기", DFS_depthFirstSearch ]
+                , [ "퍼즐 조각 채우기", implementation, DFS_depthFirstSearch ]
                 , [ "하노이의 탑", recursion ]
                 , [ "N-Queen", backtracking ]
                 , [ "N으로 표현", backtracking ]
