@@ -21,6 +21,7 @@ const priorityQueue = "priority queue";
 const simulation = "simulation";
 const slidingWindow = "sliding window";
 const sort = "sort";
+const trie = "trie";
 const twoPointers = "two pointers";
 const recursion = "recursion"
 const regularExpression = "regular expression";
@@ -32,6 +33,7 @@ const list = {
             ]
             , kakao_level_4: [
                 [ "4단 고음", backtracking ]
+                , [ "가사 검색", trie ]
             ]
             , kakao_level_3: [
                 [ "[1차] 셔틀버스", greedyAlgorithm, priorityQueue ]
