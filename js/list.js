@@ -54,7 +54,7 @@ const list = {
                 , [ "징검다리 건너기", parametricSearch ]
                 , [ "카드 짝 맞추기", DFS_depthFirstSearch, BFS_breadthFirstSearch ]
                 , [ "파괴되지 않은 건물", prefixSum ]
-                , [ "표 편집", simulation ]
+                , [ "표 편집", priorityQueue ]
                 , [ "합승 택시 요금", dijkstra ]
                 , [ "GPS", DP_dynamicProgramming ]
             ]
