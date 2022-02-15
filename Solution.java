@@ -1,10 +1,10 @@
 class Solution {
     class Trie {
         int value;
-        java.util.Map<Character, Trie> map = new java.util.HashMap<>();
+        Trie[] child = new Trie[26];
 
-        Trie get(char key) {
-            return map.get(key);
+        Trie get(int i) {
+            return child[i];
         }
 
         int value() {
@@ -14,16 +14,28 @@ class Solution {
         void putPrefix(String s, int length, int index) {
             this.value++;
             if (index < length) {
-                map.computeIfAbsent(s.charAt(index++), 
-                        key -> new Trie()).putPrefix(s, length, index);
+                int i = s.charAt(index++) - 97;
+                Trie t = child[i];
+
+                if (t == null) {
+                    t = new Trie();
+                }
+                child[i] = t;
+                t.putPrefix(s, length, index);
             }
         }
 
         void putSuffix(String s, int index) {
             this.value++;
             if (index-- > 0) {
-                map.computeIfAbsent(s.charAt(index),
-                        key -> new Trie()).putSuffix(s, index);
+                int i = s.charAt(index) - 97;
+                Trie t = child[i];
+
+                if (t == null) {
+                    t = new Trie();
+                }
+                child[i] = t;
+                t.putSuffix(s, index);
             }
         }
     }
@@ -55,18 +67,18 @@ class Solution {
             if ((c = query.charAt(0)) != '?') {
                 trie = prefixTries[length];
                 index = 1;
-                trie = trie.get(c);
+                trie = trie.get(c - 97);
                 while (trie != null && index < length
                         && (c = query.charAt(index++)) != '?') {
-                    trie = trie.get(c);
+                    trie = trie.get(c - 97);
                 }
             } else if ((c = query.charAt(length - 1)) != '?') {
                 trie = suffixTries[length];
                 index = length - 1;
-                trie = trie.get(c);
+                trie = trie.get(c - 97);
                 while (trie != null && index > 0
                         && (c = query.charAt(--index)) != '?') {
-                    trie = trie.get(c);
+                    trie = trie.get(c - 97);
                 }
             } else {
                 trie = prefixTries[length];
@@ -76,5 +88,11 @@ class Solution {
             }
         }
         return answer;
+    }
+
+    public static void main(String[] args) {
+        PrintArray.print(new Solution().solution(
+                new String[] { "frodo", "front", "frost", "frozen", "frame", "kakao" },
+                new String[] { "fro??", "????o", "fr???", "fro???", "pro?" }));
     }
 }
