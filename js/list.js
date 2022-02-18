@@ -35,6 +35,7 @@ const list = {
                 [ "4단 고음", backtracking ]
                 , [ "가사 검색", trie ]
                 , [ "무지의 먹방 라이브", priorityQueue ]
+                , [ "미로 탈출", dijkstra, priorityQueue ]
             ]
             , kakao_level_3: [
                 [ "[1차] 셔틀버스", greedyAlgorithm, priorityQueue ]

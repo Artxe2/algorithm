@@ -108,7 +108,7 @@ public class PriorityQueue {
         int c;
 
         while (index < half) {
-            child = index + index + 1;
+            child = index * 2 + 1;
             c = queue[child];
             if (child + 1 < size && !verifyOrder(c, queue[child + 1])) {
                 c = queue[++child];
