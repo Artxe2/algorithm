@@ -54,7 +54,6 @@ public class ParametricSearch {
         int mid;
         int end = length * length;
 
-        /* parametric search */
         while (start < end) {
             mid = (start + end - 1) / 2;
 
@@ -77,7 +76,6 @@ public class ParametricSearch {
         int mid;
         int end = length - 1;
 
-        /* parametric search */
         while (start < end) {
             mid = (start + end + 1) / 2;
             if (mid <= array[mid]) {
@@ -94,7 +92,6 @@ public class ParametricSearch {
         int mid;
         int end = length - 1;
 
-        /* parametric search */
         while (start < end) {
             mid = (start + end - 1) / 2;
             if (array[mid] <= el) {
