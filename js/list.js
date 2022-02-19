@@ -18,13 +18,14 @@ const minimax = "minimax";
 const parametricSearch = "parametric search";
 const prefixSum = "prefix sum";
 const priorityQueue = "priority queue";
+const recursion = "recursion"
+const regularExpression = "regular expression";
 const simulation = "simulation";
 const slidingWindow = "sliding window";
 const sort = "sort";
 const trie = "trie";
 const twoPointers = "two pointers";
-const recursion = "recursion"
-const regularExpression = "regular expression";
+const unionFind = "union find";
 
 const list = {
     java: {
@@ -36,6 +37,7 @@ const list = {
                 , [ "가사 검색", trie ]
                 , [ "무지의 먹방 라이브", priorityQueue ]
                 , [ "미로 탈출", dijkstra, priorityQueue ]
+                , [ "호텔 방 배정", unionFind ]
             ]
             , kakao_level_3: [
                 [ "[1차] 셔틀버스", greedyAlgorithm, priorityQueue ]
@@ -122,7 +124,7 @@ const list = {
                 , [ "디스크 컨트롤러", simulation ]
                 , [ "멀리 뛰기", fibonacci, DP_dynamicProgramming ]
                 , [ "모두 0으로 만들기", graph, DP_dynamicProgramming ]
-                , [ "섬 연결하기", simulation ]
+                , [ "섬 연결하기", unionFind ]
                 , [ "순위", simulation ]
                 , [ "숫자 게임", sort ]
                 , [ "스타 수열", greedyAlgorithm ]
