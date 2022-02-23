@@ -23,6 +23,7 @@ const regularExpression = "regular expression";
 const simulation = "simulation";
 const slidingWindow = "sliding window";
 const sort = "sort";
+const sweeping = "sweeping";
 const trie = "trie";
 const twoPointers = "two pointers";
 const unionFind = "union find";
