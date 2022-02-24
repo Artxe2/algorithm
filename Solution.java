@@ -1,14 +1,12 @@
-import javax.crypto.Cipher;
-
 class Solution {
     public int solution(int n, int m, int[][] timetable) {
         int curr = 0;
         int max = 1;
-        int[] customers = new int[721];
+        int[] customers = new int[722];
 
         for (int[] a : timetable) {
             customers[a[0] - 600]++;
-            customers[a[1] - 600]--;
+            customers[a[1] - 599]--;
         }
         for (int i : customers) {
             curr += i;
@@ -41,30 +39,39 @@ class Solution {
         return start;
     }
 
-    int countMax(int n, int m, int length, boolean[] visit) {
-        int x = m / 2;
-        int y = m - x;
-        int xs = (n - 1) % m;
-        int col = (n - 1) / m + 1;
-        int row = (n - 1) / y + 1;
-
-        if (x > xs) {
-            return col * row - row / 2;
-        }
-        if (x == xs) {
-            return col * row;
-        }
-
+    int countMax(int n, int gap, int length, boolean[] visit) {
         int result = 0;
+        int temp;
+        int index;
+        int y;
+        int x;
+        int from;
+        int to;
 
-        reset(visit, length);
-        for (int i = 0; i < length; i++) {
-            if (!visit[i]) {
-                for (int j = 0; j < m; j++) {
-                    
+        for (int i = 0; i < gap; i++) {
+            reset(visit, length);
+            temp = 0;
+            index = i;
+            do {
+                if (!visit[index]) {
+                    y = index / n;
+                    x = index % n;
+                    for (int j = 1; j < gap && ++y * n < length; j++) {
+                        from = y * n + Math.max(x - gap + j + 1, 0);
+                        to = y * n + Math.min(x + gap - j, n);
+                        while (from < to) {
+                            visit[from++] = true;
+                        }
+                    }
+                    for (int j = 0; j < Math.min(gap, n - x); j++) {
+                        visit[index++] = true;
+                    }
+                    temp++;
+                } else {
+                    index++;
                 }
-                result++;
-            }
+            } while (index < length);
+            result = Math.max(result, temp);
         }
         return result;
     }
@@ -80,13 +87,5 @@ class Solution {
         if (index < length) {
             System.arraycopy(visit, 0, visit, index, length - index);
         }
-    }
-
-    public static void main(String[] args) {
-        int answer;
-
-        answer = new Solution().solution(4, 5, Gson.fromJson(int[][].class, "[[1140,1200],[1150,1200],[1100,1200],[1210,1300],[1220,1280]]"));
-        System.out.println(answer + " == 4: " + (answer == 4));
-    
     }
 }
