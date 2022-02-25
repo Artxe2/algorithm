@@ -1,5 +1,6 @@
 const backtracking = "backtracking";
 const bestFirstSearch = "best first search";
+const bruteForce = "brute force";
 const BFS_breadthFirstSearch = "BFS(breadth first search)";
 const binarySearch = "binary search";
 const binaryTree = "binary tree";
@@ -36,6 +37,7 @@ const list = {
             , kakao_level_4: [
                 [ "4단 고음", backtracking ]
                 , [ "가사 검색", trie ]
+                , [ "몸짱 트레이너 라이언의 고민", bruteForce, binarySearch, sweeping ]
                 , [ "무지의 먹방 라이브", priorityQueue ]
                 , [ "미로 탈출", dijkstra, priorityQueue ]
                 , [ "호텔 방 배정", unionFind ]
