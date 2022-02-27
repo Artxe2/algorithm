@@ -38,9 +38,9 @@ const list = {
                 [ "4단 고음", backtracking ]
                 , [ "가사 검색", trie ]
                 , [ "몸짱 트레이너 라이언의 고민", greedyAlgorithm, binarySearch, sweeping ]
-                , [ "무지의 먹방 라이브", priorityQueue ]
+                , [ "무지의 먹방 라이브", greedyAlgorithm, priorityQueue ]
                 , [ "미로 탈출", dijkstra, priorityQueue ]
-                , [ "호텔 방 배정", unionFind ]
+                , [ "호텔 방 배정", unionFind, hashMap ]
             ]
             , kakao_level_3: [
                 [ "[1차] 셔틀버스", greedyAlgorithm, priorityQueue ]
