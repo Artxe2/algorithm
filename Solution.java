@@ -1,30 +1,30 @@
 class Solution {
     public int solution(int n, int[] cores) {
         int length = cores.length;
-        int start = 1;
+        int start = 0;
         int mid = 0;
-        int end = (n / length + 1) * cores[length - 1];
+        int end = (n / length + 1) * 10000;
         int temp;
         int work = 0;
+        int index = 0;
 
         while (start < end) {
-            mid = (start + end - 1) / 2;
+            mid = (start + end + 1) / 2;
             temp = 0;
             for (int i : cores) {
-                temp += mid / i;
+                temp += mid / i + (mid % i > 0 ? 1 : 0);
             }
-            if (temp >= n) {
+            if (temp < n) {
                 work = temp;
-                end = mid;
+                start = mid;
             } else {
-                start = mid + 1;
+                end = mid - 1;
             }
         }
-        work -= n;
+        work = n - work;
         for (;;) {
-            System.out.println(mid + ": " + (length - 1) + ", " + work);
-            if (mid % cores[--length] == 0 && work-- == 0) {
-                return length + 1;
+            if (start % cores[index++] == 0 && --work == 0) {
+                return index;
             }
         }
     }

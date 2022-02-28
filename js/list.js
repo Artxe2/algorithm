@@ -107,6 +107,7 @@ const list = {
                 [ "단어 퍼즐", DP_dynamicProgramming ]
                 , [ "도둑질", DP_dynamicProgramming ]
                 , [ "사칙연산", branchAndBound ]
+                , [ "선입 선출 스케줄링", parametricSearch ]
                 , [ "지형 이동", BFS_breadthFirstSearch ]
                 , [ "징검다리", parametricSearch ]
             ]
