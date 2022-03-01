@@ -28,7 +28,8 @@ public class SegmentTree {
         update(segmentTree, length, index, value);
         sum = sum(segmentTree, length, from, to);
 
-        System.out.println("update: " + index + " -> " + value + ", sum " + from + " ~ " + to + ": " + sum);
+        System.out.println("update: " + index + " -> " + value
+                + ", sum " + from + " ~ " + to + ": " + sum);
 
         printArray(segmentTree);
     }
