@@ -266,6 +266,7 @@ const list = {
             , "ParametricSearch.java"
             , "PriorityQueue.java"
             , "QuickSort.java"
+            , "SegmentTree.java"
         ]
     }
 };
