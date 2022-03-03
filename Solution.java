@@ -1,31 +1,25 @@
 class Solution {
-    public int solution(int n, int[] cores) {
-        int length = cores.length;
-        int start = 0;
-        int mid = 0;
-        int end = (n / length + 1) * 10000;
-        int temp;
-        int work = 0;
-        int index = 0;
+    public int solution(int n) {
+        if (n % 2 > 0) {
+            return 0;
+        }
+        if (n == 2) {
+            return 3;
+        }
+        n = n / 2;
+        
+        int mod = 1000000007;
+        long temp;
+        long[] answer = new long[n + 1];
+        long[] reverse = new long[n + 1];
 
-        while (start < end) {
-            mid = (start + end + 1) / 2;
-            temp = 0;
-            for (int i : cores) {
-                temp += mid / i + (mid % i > 0 ? 1 : 0);
-            }
-            if (temp < n) {
-                work = temp;
-                start = mid;
-            } else {
-                end = mid - 1;
-            }
+        answer[1] = 3;
+        answer[2] = 11;
+        for (int i = 2; i <= n; i++) {
+            temp = reverse[i - 1] + answer[i - 2] * 2;
+            reverse[i] = temp;
+            answer[i] = (answer[i - 1] * 3 + temp + 2) % mod;
         }
-        work = n - work;
-        for (;;) {
-            if (start % cores[index++] == 0 && --work == 0) {
-                return index;
-            }
-        }
+        return (int) answer[n];
     }
 }
