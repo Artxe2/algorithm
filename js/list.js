@@ -104,7 +104,8 @@ const list = {
                 [ "방의 개수", graph, hashMap, hashSet ]
             ]
             , level_4: [
-                [ "단어 퍼즐", DP_dynamicProgramming ]
+                [ "3 x n 타일링", DP_dynamicProgramming ]
+                , [ "단어 퍼즐", DP_dynamicProgramming ]
                 , [ "도둑질", DP_dynamicProgramming ]
                 , [ "사칙연산", branchAndBound ]
                 , [ "선입 선출 스케줄링", parametricSearch ]
