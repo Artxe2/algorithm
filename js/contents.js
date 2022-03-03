@@ -72,13 +72,12 @@ const highlightCustom = () => {
             }
         }
         hl.innerHTML = hl.innerHTML
-                .replaceAll("?", `<span class="hljs-keyword">?</span>`)
-                .replaceAll(":", `<span class="hljs-keyword">:</span>`)
+                .replace(/\?/gi, `<span class="hljs-keyword">?</span>`)
+                .replace(/\:/gi, `<span class="hljs-keyword">:</span>`)
                 .replaceAll(`<span class="hljs-meta">@Override</span>`,
                         `@<span class="hljs-meta">Override</span>`)
         const strings = hl.querySelectorAll('.hljs-string')
         for (const el of strings) {
-            console.log(el.innerHTML)
             el.innerHTML = el.innerHTML
                 .replaceAll(`<span class="hljs-keyword">?</span>`, "?")
                 .replaceAll(`<span class="hljs-keyword">:</span>`, ":")
@@ -86,8 +85,8 @@ const highlightCustom = () => {
     }
 }
 
-const parseUrlSafe = url => url.replaceAll(" ", "-")
-        .replaceAll('[', '').replaceAll(']', '').replaceAll('?', '')
+const parseUrlSafe = url => url.replace(/ /gi, "-")
+        .replace(/[\[\]\?]/gi, '')
 
 const readUrl = () => {
     const url = new URLSearchParams(document.location.search)
@@ -119,7 +118,8 @@ const showContent = (link, algo) => {
                 }
                 hash = hash + "</div>";
 
-                _contents.innerHTML = "<h3>" + link + "</h3>"
+                _contents.innerHTML = "<h3>" + link.replace(/\//gi, " > ")
+                        .replace(/_/gi, " ") + "</h3>"
                         + "<h1>" + getTitle(unfoldList(link), algo) + "</h1>"
                         + hash + md;
                 hljs.initHighlighting.called = false;
