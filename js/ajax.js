@@ -1,5 +1,5 @@
 const ajax = config => {
-	var req = new XMLHttpRequest()
+	let req = new XMLHttpRequest()
 
 	req.onreadystatechange = () => {
 		if (req.readyState == 4) {

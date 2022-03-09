@@ -263,6 +263,7 @@ const list = {
         , algorithm: [
             "Backtracking.java"
             , "BoyerMoore.java"
+            , "Dijkstra.java"
             , "MergeSort.java"
             , "ParametricSearch.java"
             , "PriorityQueue.java"
