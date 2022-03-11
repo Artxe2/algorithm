@@ -8,7 +8,7 @@ class Solution {
             return 3;
         }
         n = n / 2;
-        
+
         int mod = 1000000007;
         long temp;
         long[] answer = new long[n + 1];

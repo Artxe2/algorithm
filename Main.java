@@ -1,10 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        int[] sales = Gson.fromJson(int[].class, "[14, 17, 15, 18, 19, 14, 13, 16, 28, 17]");
-        int[][] links = Gson.fromJson(int[][].class, "[[10, 8], [1, 9], [9, 7], [5, 4], [1, 5], [5, 10], [10, 6], [1, 3], [10, 2]]");
+        int[] a = { 1,1,1,1,1,1,2,5,8,2,1,1,4,8,8,8,12,6,6 };
+        int[] b = { 4,3,1,5,6 };
+        int[] answer = new Solution().solution(a, b);
 
-        int answer = new Solution().solution(sales, links);
-
-        System.out.println("answer: " + answer + " == 44: " + (answer == 44));
+        System.out.println("answer: " + Gson.toJson(answer) + " == [6,3,1,5,9]: " + Gson.toJson(answer).equals("[6,3,1,5,9]"));
     }
 }
