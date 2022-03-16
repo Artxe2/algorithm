@@ -2,7 +2,7 @@
 public class SegmentTree {
     public SegmentTree() {
         int length = 100000;
-        long[] array = new long[length];
+        int[] array = new int[length];
         java.util.Random random = new java.util.Random();
 
         for (int i = 0; i < length; i++) {
@@ -34,6 +34,25 @@ public class SegmentTree {
         printArray(segmentTree);
     }
 
+    void printArray(int[] array) {
+        int length = array.length;
+        System.out.print("{ ");
+        if (length < 25) {
+            for (int i = 0; i < length - 1; i++) {
+                System.out.print(array[i] + ", ");
+            }
+        } else {
+            for (int i = 0; i < 10 - 1; i++) {
+                System.out.print(array[i] + ", ");
+            }
+            System.out.print(array[10] + " ... ");
+            for (int i = length - 10; i < length - 1; i++) {
+                System.out.print(array[i] + ", ");
+            }
+        }
+        System.out.print(array[length - 1] + " }\n");
+    }
+
     void printArray(long[] array) {
         int length = array.length;
         System.out.print("{ ");
@@ -57,7 +76,7 @@ public class SegmentTree {
         new SegmentTree();
     }
 
-    long[] segmentTree(long[] array) {
+    long[] segmentTree(int[] array) {
         int length = array.length;
         long[] segmentTree = new long[length * 4];
 
@@ -65,7 +84,7 @@ public class SegmentTree {
         return segmentTree;
     }
 
-    long init(long[] array, long[] tree, int node, int start, int end) {
+    long init(int[] array, long[] tree, int node, int start, int end) {
         if (start == end) {
             return (tree[node] = array[start]);
         } else {
