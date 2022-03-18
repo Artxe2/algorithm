@@ -1,109 +1,112 @@
 class Solution {
-    public boolean solution(int n, int[][] path, int[][] order) {
-        int length = n + order.length - 1;
+    public int solution(int n, int[][] data) {
+        int size = 0;
         int index = 0;
-        int size = 1;
+        int prev = -1;
         int curr;
-        int[] inDegree = new int[n];
-        int[] from = new int[length];
-        int[] to = new int[length];
-        int[][] graph = toGraph(n, path);
-        boolean[] visit = new boolean[n];
-        java.util.Deque<Integer> rooms = new java.util.ArrayDeque<>(n);
+        int[] queue = new int[n];
+        java.util.Map<Integer, Integer> yIndex = new java.util.HashMap<>();
+        java.util.Map<Integer, Integer> xIndex = new java.util.HashMap<>();
 
-        visit[0] = true;
-        rooms.addLast(0);
-        do {
-            curr = rooms.pollFirst();
-            for (int i : graph[curr]) {
-                if (!visit[i]) {
-                    visit[i] = true;
-                    rooms.addLast(i);
-                    from[index] = curr;
-                    to[index++] = i;
-                }
-            }
-            if (--size == 0) {
-                size = rooms.size();
-            }
-        } while (!rooms.isEmpty());
-        fill(inDegree, n, 1);
-        for (int[] a : order) {
-            from[index] = a[0];
-            to[index++] = a[1];
-            inDegree[a[1]]++;
-        }
-        topological(n, length, from, to, graph);
-        if (inDegree[0] == 2) {
-            return false;
-        }
-        rooms.addLast(0);
-        for (int i = 1; i < n; i++) {
-            curr = rooms.pollLast();
-            for (int j : graph[curr]) {
-                if (--inDegree[j] == 0) {
-                    rooms.addLast(j);
-                }
-            }
-            if (rooms.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    void topological(int n, int length, int[] from, int[] to, int[][] graph) {
-        int f;
-        int t;
-        int[] visit = new int[n];
-
-        for (int i : from) {
-            visit[i]++;
+        for (int[] a : data) {
+            offer(queue, size++, a[0]);
         }
         for (int i = 0; i < n; i++) {
-            graph[i] = new int[visit[i]];
+            curr = poll(queue, size--);
+            if (curr > prev) {
+                yIndex.put(curr, index++);
+                prev = curr;
+            }
         }
-        fill(visit, n, 0);
-        for (int i = 0; i < length; i++) {
-            f = from[i];
-            t = to[i];
-            graph[f][visit[f]++] = t;
-        }
-    }
-
-    int[][] toGraph(int n, int[][] path) {
-        int a0;
-        int a1;
-        int[] visit = new int[n];
-        int[][] graph = new int[n][];
-
-        for (int[] a : path) {
-            visit[a[0]]++;
-            visit[a[1]]++;
+        index = 0;
+        prev = -1;
+        for (int[] a : data) {
+            offer(queue, size++, a[1]);
         }
         for (int i = 0; i < n; i++) {
-            graph[i] = new int[visit[i]];
+            curr = poll(queue, size--);
+            if (curr > prev) {
+                xIndex.put(curr, index++);
+                prev = curr;
+            }
         }
-        fill(visit, n, 0);
-        for (int[] a : path) {
-            a0 = a[0];
-            a1 = a[1];
-            graph[a0][visit[a0]++] = a1;
-            graph[a1][visit[a1]++] = a0;
+
+        int yLength = yIndex.size();
+        int xLength = xIndex.size();
+        boolean[][] matrix = new boolean[yLength][xLength];
+
+        for (int[] a : data) {
+            matrix[yIndex.get(a[0])][xIndex.get(a[1])] = true;
         }
-        return graph;
+        for (int i = 1; i < yLength; i++) {
+            size += countTent(matrix[i - 1], matrix[i], xLength);
+        }
+        return size;
     }
 
-    void fill(int[] array, int length, int value) {
-        int index = 1;
+    int countTent(boolean[] a, boolean[] b, int length) {
+        int index = 0;
 
-        array[0] = value;
-        do {
-            System.arraycopy(array, 0, array, index, index);
-            index += index;
-        } while (index * 2 < length);
-        if (index < length) {
-            System.arraycopy(array, 0, array, index, length - index);
+        while (index < length) {
+            
         }
+        return length;
+    }
+
+    void offer(int[] queue, int size, int e) {
+        if (size == 0) {
+            queue[0] = e;
+        } else {
+            siftUp(queue, size, e);
+        }
+    }
+
+    int poll(int[] queue, int size) {
+        int result = queue[0];
+
+        siftDown(queue, size);
+        return result;
+    }
+
+    void siftUp(int[] queue, int size, int e) {
+        int parent;
+        int p;
+
+        while (size > 0) {
+            parent = (size - 1) / 2;
+            p = queue[parent];
+            if (verifyOrder(p, e)) {
+                break;
+            }
+            queue[size] = p;
+            size = parent;
+        }
+        queue[size] = e;
+    }
+
+    void siftDown(int[] queue, int size) {
+        int e = queue[--size];
+        int index = 0;
+        int half = size / 2;
+        int child;
+        int c;
+
+        while (index < half) {
+            child = index * 2 + 1;
+            c = queue[child];
+            if (child + 1 < size && !verifyOrder(c, queue[child + 1])) {
+                c = queue[++child];
+            }
+            if (verifyOrder(e, c)) {
+                break;
+            }
+            queue[index] = c;
+            index = child;
+        }
+        queue[index] = e;
+    }
+
+    boolean verifyOrder(int a, int b) {
+        return a <= b;
     }
 }

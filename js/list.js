@@ -5,6 +5,7 @@ const BFS_breadthFirstSearch = "BFS(breadth first search)";
 const binarySearch = "binary search";
 const binaryTree = "binary tree";
 const branchAndBound = "branch and bound";
+const coordinateCompression = "coordinate compression";
 const DFS_depthFirstSearch = "DFS(depth first search)";
 const dijkstra = "dijkstra";
 const DP_dynamicProgramming = "DP(dynamic programming)";
