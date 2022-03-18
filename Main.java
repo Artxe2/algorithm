@@ -1,13 +1,26 @@
 public class Main {
     public static void main(String[] args) {
-        // int[] a = new int[200000];
-        // int[] b = { 200000 };
-        // java.util.Arrays.fill(a, (int) 1e9);
+        boolean answer;
 
-        int[] a = { 1,1,1,1,1,1,2,5,8,2,1,1,4,8,8,8,12,6,6 };
-        int[] b = { 4,3,1,5,6 };
-
-        int[] answer = new Solution().solution(a, b);
-        System.out.println("answer: " + Gson.toJson(answer) + " == [6,3,1,5,9]: " + Gson.toJson(answer).equals("[6,3,1,5,9]"));
+        answer = new Solution().solution(
+            9
+            , Gson.fromJson(int[][].class, "[[0,1],[0,3],[0,7],[8,1],[3,6],[1,2],[4,7],[7,5]]")
+            , Gson.fromJson(int[][].class, "[[8,5],[6,7],[4,1]]")
+        );
+        System.out.println("answer: " + answer + " == true ?");
+        
+        answer = new Solution().solution(
+            9
+            , Gson.fromJson(int[][].class, "[[8,1],[0,1],[1,2],[0,7],[4,7],[0,3],[7,5],[3,6]]")
+            , Gson.fromJson(int[][].class, "[[4,1],[5,2]]")
+        );
+        System.out.println("answer: " + answer + " == true ?");
+        
+        answer = new Solution().solution(
+            9
+            , Gson.fromJson(int[][].class, "[[0,1],[0,3],[0,7],[8,1],[3,6],[1,2],[4,7],[7,5]]")
+            , Gson.fromJson(int[][].class, "[[4,1],[8,7],[6,5]]")
+        );
+        System.out.println("answer: " + answer + " == false ?");
     }
 }

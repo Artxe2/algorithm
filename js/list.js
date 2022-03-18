@@ -25,6 +25,7 @@ const simulation = "simulation";
 const slidingWindow = "sliding window";
 const sort = "sort";
 const sweeping = "sweeping";
+const topologicalSort = " topological sort";
 const trie = "trie";
 const twoPointers = "two pointers";
 const unionFind = "union find";
@@ -37,6 +38,7 @@ const list = {
             , kakao_level_4: [
                 [ "4단 고음", backtracking ]
                 , [ "가사 검색", trie ]
+                , [ "동굴 탐험", topologicalSort, graph ]
                 , [ "몸짱 트레이너 라이언의 고민", greedyAlgorithm, binarySearch, sweeping ]
                 , [ "무지의 먹방 라이브", greedyAlgorithm, priorityQueue ]
                 , [ "미로 탈출", dijkstra, priorityQueue ]
