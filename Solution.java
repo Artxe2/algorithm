@@ -38,19 +38,7 @@ class Solution {
         for (int[] a : data) {
             matrix[yIndex.get(a[0])][xIndex.get(a[1])] = true;
         }
-        for (int i = 1; i < yLength; i++) {
-            size += countTent(matrix[i - 1], matrix[i], xLength);
-        }
         return size;
-    }
-
-    int countTent(boolean[] a, boolean[] b, int length) {
-        int index = 0;
-
-        while (index < length) {
-            
-        }
-        return length;
     }
 
     void offer(int[] queue, int size, int e) {
