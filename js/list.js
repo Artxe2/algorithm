@@ -37,7 +37,8 @@ const list = {
             kakao_level_5: [
             ]
             , kakao_level_4: [
-                [ "4단 고음", backtracking ]
+                [ "[3차] 자동완성", trie ]
+                , [ "4단 고음", backtracking ]
                 , [ "가사 검색", trie ]
                 , [ "동굴 탐험", topologicalSort, graph ]
                 , [ "몸짱 트레이너 라이언의 고민", greedyAlgorithm, binarySearch, sweeping ]
