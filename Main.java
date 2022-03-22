@@ -1,21 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        java.util.Random r = new java.util.Random();
         int answer;
 
         answer = new Solution().solution(
-            4
-            , Gson.fromJson(int[][].class, "[[0, 0], [3, 4], [0, 8], [6, 0]]")
+            new String[] { "go","gone","guild" }
         );
-        System.out.println("answer: " + answer + " == 3 ? " + (answer == 3));
+        System.out.println("answer: " + answer + " == 7 ? " + (answer == 7));
 
-        int length = 10;
-        boolean[] a = new boolean[length];
-        boolean[] b = new boolean[length];
+        answer = new Solution().solution(
+            new String[] { "abc","def","ghi","jklm" }
+        );
+        System.out.println("answer: " + answer + " == 4 ? " + (answer == 4));
 
-        for (int i = 0; i < length; i++) {
-            a[i] = r.nextInt(2) > 0;
-            b[i] = r.nextInt(2) > 0;
-        }
+        answer = new Solution().solution(
+            new String[] { "word","war","warrior","world" }
+        );
+        System.out.println("answer: " + answer + " == 15 ? " + (answer == 15));
     }
 }
