@@ -62,25 +62,84 @@ const highlightCustom = () => {
         for (const el of keywords) {
             switch (el.innerHTML) {
                 case "class": case"public":
-                    el.classList.add("prefix")
+                    el.classList = [ "hljs-modifier" ];
                     break;
                 case "static":
-                    el.classList.add("prefix")
+                    el.classList = [ "hljs-modifier" ];
                     break;
                 case "void":
-                    el.classList.add("hljs-type")
+                    el.classList = [ "hljs-type" ];
             }
         }
         hl.innerHTML = hl.innerHTML
                 .replace(/\?/gi, `<span class="hljs-keyword">?</span>`)
                 .replace(/\:/gi, `<span class="hljs-keyword">:</span>`)
-                .replaceAll(`<span class="hljs-meta">@Override</span>`,
+                .replace(/<span class="hljs-meta">@Override<\/span>/gi,
                         `@<span class="hljs-meta">Override</span>`)
+
         const strings = hl.querySelectorAll('.hljs-string')
+
         for (const el of strings) {
-            el.innerHTML = el.innerHTML
-                .replaceAll(`<span class="hljs-keyword">?</span>`, "?")
-                .replaceAll(`<span class="hljs-keyword">:</span>`, ":")
+            el.innerHTML = el.innerText;
+        }
+
+        const classes = hl.querySelectorAll('.hljs-title.class_')
+        const set = new Set()
+
+        for (const el of classes) {
+            set.add(el.innerText)
+        }
+        for (const s of set) {
+            hl.innerHTML = hl.innerHTML
+                .replace(
+                    new RegExp(`(?<=\\s)${s}(?=\\s|\\[)`, "gi")
+                    , `<span class="hljs-type">${s}</span>`
+                )
+        }
+        hl.innerHTML = hl.innerHTML
+            .replace(
+                /(?<= |\()System|Math(?=\.)/gi
+                , s => `<span class="hljs-title class_">${s}</span>`
+            )
+            .replace(
+                /java.util.<span class="hljs-type">Random<\/span>|<span class="hljs-title class_">java<\/span>.util.Random/gi
+                , `<span class="hljs-package">java.util.Random</span>`
+            )
+            .replace(
+                /java.util.[A-Za-z]+(?= |&lt;|\.)/gi
+                , s => `<span class="hljs-package">${s}</span>`
+            )
+            .replace(
+                /<span class="hljs-title class_">java<\/span>.util.[A-Za-z]+(?=&lt;)/gi
+                , s => `${s.replace("hljs-title class_", "hljs-package").replace("</span>", "")}</span>`
+            )
+            .replace(
+                /(?<= |\.|\(|\[|--|\+\+)[A-Za-z0-9\_]+(?= |;|\.|\[|\]|,|\)|--|\+\+)/gi
+                , s => `<span class="hljs-variable">${s}</span>`
+            )
+            .replace(
+                /(?<= |\.)[A-Za-z0-9\_]+(?=\()/gi
+                , s => `<span class="hljs-title function_">${s}</span>`
+            )
+            .replace(
+                /\([A-Za-z0-9\_]+(?=\()/gi
+                , s => `(<span class="hljs-title function_">${s.substring(1)}</span>`
+            )
+            .replace(
+                /(?<=&lt;|, )[A-Za-z0-9\_]+(?=&gt;|, )/gi
+                , s => `<span class="hljs-type">${s}</span>`
+            )
+
+        const coments = hl.querySelectorAll('.hljs-comment')
+
+        for (const el of coments) {
+            el.innerHTML = el.innerText;
+        }
+
+        const packages = hl.querySelectorAll('.hljs-package')
+        
+        for (const el of packages) {
+            el.innerHTML = el.innerText;
         }
     }
 }
