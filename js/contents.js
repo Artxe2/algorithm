@@ -61,10 +61,11 @@ const highlightCustom = () => {
 
         for (const el of keywords) {
             switch (el.innerHTML) {
-                case "class": case"public":
-                    el.classList = [ "hljs-modifier" ];
-                    break;
+                case "class":
+                case "public":
+                case "private":
                 case "static":
+                case "final":
                     el.classList = [ "hljs-modifier" ];
                     break;
                 case "void":
