@@ -115,11 +115,11 @@ const highlightCustom = () => {
                 , s => `${s.replace("hljs-title class_", "hljs-package").replace("</span>", "")}</span>`
             )
             .replace(
-                /(?<= |\.|\(|\[|--|\+\+)[A-Za-z0-9\_]+(?= |;|\.|\[|\]|,|\)|--|\+\+)/gi
+                /(?<= |\.|\(|\[|!|--|\+\+)[A-Za-z0-9\_]+(?= |;|\.|\[|\]|,|\)|--|\+\+)/gi
                 , s => `<span class="hljs-variable">${s}</span>`
             )
             .replace(
-                /(?<= |\.)[A-Za-z0-9\_]+(?=\()/gi
+                /(?<= |\.|!)[A-Za-z0-9\_]+(?=\()/gi
                 , s => `<span class="hljs-title function_">${s}</span>`
             )
             .replace(
