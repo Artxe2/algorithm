@@ -2,7 +2,7 @@ import java.text.DecimalFormat;
 
 public class Stock {
     static final double COMM = 0.0025;
-    public static void main(String[] args) {
+    public static void maina(String[] args) {
         long target = 107000;
         long a = 56000000;
         long aa = a / target; // 523

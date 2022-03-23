@@ -3,10 +3,11 @@ class Solution {
         int length = (int) (end - begin) + 1;
         int[] answer = new int[length];
 
-        for (int i = 0; i < length; i++) {
-            if (begin + i > 1) {
-                answer[i] = findMod(begin + i);
-            }
+        if (begin > 2) {
+            answer[0] = findMod(begin);
+        }
+        for (int i = 1; i < length; i++) {
+            answer[i] = findMod(begin + i);
         }
         return answer;
     }
@@ -15,7 +16,7 @@ class Solution {
         int mod = (int) Math.min(10000000, n / 2);
         int max = (int) Math.min(mod, Math.sqrt(n));
 
-        for (int i = (int) Math.max(2, (n / mod)); i <= max; i++) {
+        for (int i = (int) (n / mod) + (n % mod > 0 ? 1 : 0); i <= max; i++) {
             if (n % i == 0) {
                 return (int) Math.max(n / i, n % i);
             }
