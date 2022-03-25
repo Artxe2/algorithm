@@ -5,6 +5,7 @@ const BFS_breadthFirstSearch = "BFS(breadth first search)";
 const binarySearch = "binary search";
 const binaryTree = "binary tree";
 const branchAndBound = "branch and bound";
+const catalanNumber = "catalan number";
 const coordinateCompression = "coordinate compression";
 const DFS_depthFirstSearch = "DFS(depth first search)";
 const dijkstra = "dijkstra";
@@ -116,6 +117,7 @@ const list = {
                 , [ "선입 선출 스케줄링", parametricSearch ]
                 , [ "숫자 블록", simulation ]
                 , [ "안티 세포", DP_dynamicProgramming ]
+                , [ "올바른 괄호의 갯수", catalanNumber ]
                 , [ "지형 이동", BFS_breadthFirstSearch ]
                 , [ "징검다리", parametricSearch ]
             ]
