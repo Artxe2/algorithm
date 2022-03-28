@@ -4,6 +4,7 @@ const bruteForce = "brute force";
 const BFS_breadthFirstSearch = "BFS(breadth first search)";
 const binarySearch = "binary search";
 const binaryTree = "binary tree";
+const bottomUp = "bottom up";
 const branchAndBound = "branch and bound";
 const catalanNumber = "catalan number";
 const coordinateCompression = "coordinate compression";
@@ -42,6 +43,7 @@ const list = {
                 , [ "4단 고음", backtracking ]
                 , [ "가사 검색", trie ]
                 , [ "동굴 탐험", topologicalSort, graph ]
+                , [ "매출 하락 최소화", graph, DP_dynamicProgramming, bottomUp ]
                 , [ "몸짱 트레이너 라이언의 고민", greedyAlgorithm, binarySearch, sweeping ]
                 , [ "무지의 먹방 라이브", greedyAlgorithm, priorityQueue ]
                 , [ "미로 탈출", dijkstra, priorityQueue ]
@@ -137,7 +139,7 @@ const list = {
                 , [ "등굣길", DP_dynamicProgramming ]
                 , [ "디스크 컨트롤러", simulation ]
                 , [ "멀리 뛰기", fibonacci, DP_dynamicProgramming ]
-                , [ "모두 0으로 만들기", graph, DP_dynamicProgramming ]
+                , [ "모두 0으로 만들기", graph, DP_dynamicProgramming, bottomUp ]
                 , [ "섬 연결하기", unionFind ]
                 , [ "순위", simulation ]
                 , [ "숫자 게임", sort ]
