@@ -34,7 +34,14 @@ const twoPointers = "two pointers";
 const unionFind = "union find";
 
 const list = {
-    java: {
+    cpp: {
+        programmers: {
+            level_3: [
+                [ "N으로 표현", backtracking ]
+            ]
+        }
+    }
+    , java: {
         programmers: {
             kakao_level_5: [
             ]
@@ -281,5 +288,19 @@ const list = {
             , "QuickSort.java"
             , "SegmentTree.java"
         ]
+    }
+    , javascript: {
+        programmers: {
+            level_3: [
+                [ "N으로 표현", backtracking ]
+            ]
+        }
+    }
+    , python: {
+        programmers: {
+            level_3: [
+                [ "N으로 표현", backtracking ]
+            ]
+        }
     }
 };

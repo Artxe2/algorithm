@@ -5,7 +5,7 @@ const _logo = document.querySelector("#logo")
 const _contents = document.querySelector("#contents")
 const _list = document.querySelector("#list")
 
-document.addEventListener('DOMContentLoaded', (e) => {
+document.addEventListener('DOMContentLoaded', e => {
     _logo.setAttribute("href", URL_PATH)
     readUrl()
 })
@@ -235,16 +235,23 @@ const showList = () => {
 
 const unfoldList = link => {
     const path = link.split("/")
+    let lis = document.querySelector("#list");
     let obj = list;
 
     for (const p of path) {
-        const lis = document.querySelector("." + p)
-                .parentNode.querySelectorAll(":scope > ul > li")
+        lis = lis.querySelector("." + p).parentNode;
 
-        for (const li of lis) {
+        for (const li of lis.querySelectorAll(":scope > ul > li")) {
             li.className = li.className.replace("none", "").trim()
         }
         obj = obj[p];
     }
+    
+    const url = new URLSearchParams(document.location.search)
+    const title = lis.querySelector(
+        `a[href="/algorithm/?link=${url.get("link")}&algo=${url.get("algo")}"]`
+    );
+
+    title.className = (title.className + " selected").trim()
     return obj;
 }

@@ -16,26 +16,26 @@ class Solution {
         return answer < 9 ? answer : -1;
     }
 
-    int backtracking(int N, int number, int count, int accumulate, int answer) {
-        if (number == accumulate) {
+    int backtracking(int N, int number, int count, int acc, int answer) {
+        if (number == acc) {
             answer = count;
         } else {
             int nn = N;
 
             while (++count < answer) {
-                answer = backtracking(N, number, count, accumulate + nn, answer);
+                answer = backtracking(N, number, count, acc + nn, answer);
                 if (answer < count) {
                     break;
                 }
-                answer = backtracking(N, number, count, accumulate - nn, answer);
+                answer = backtracking(N, number, count, acc - nn, answer);
                 if (answer < count) {
                     break;
                 }
-                answer = backtracking(N, number, count, accumulate * nn, answer);
+                answer = backtracking(N, number, count, acc * nn, answer);
                 if (answer < count) {
                     break;
                 }
-                answer = backtracking(N, number, count, accumulate / nn, answer);
+                answer = backtracking(N, number, count, acc / nn, answer);
                 nn = nn * 10 + N;
             }
         }

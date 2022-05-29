@@ -1,62 +1,81 @@
 class Solution {
-    public int solution(int[] sales, int[][] links) {
-        int length = sales.length;
-        int index = 0;
-        int a0;
-        int a1;
-        int rt;
-        int sumChild;
-        int attendCost;
-        int[] work = new int[length];
-        boolean[] visit = new boolean[length];
-        java.util.Deque<Integer> queue = new java.util.ArrayDeque<>();
-        java.util.Map<Integer, Integer> leaders = new java.util.HashMap<>();
-        java.util.Map<Integer, java.util.Deque<Integer>> teams = 
-                new java.util.HashMap<>();
+    public int solution(int n, int rooks) {
+        int answer = 0;
+        int xl;
+        boolean[][] triangle = new boolean[n][];
 
-        for (int[] a : links) {
-            a0 = a[0] - 1;
-            a1 = a[1] - 1;
-            leaders.put(a1, a0);
-            teams.computeIfAbsent(a0, key -> new java.util.ArrayDeque<>()).add(a1);
+        rooks--;
+        for (int i = 0; i < n; i++) {
+            triangle[i] = new boolean[i * 2 + 1];
         }
-
-        int tLength = teams.size();
-        int[] root = new int[tLength];
-
-        for (int i = 0; i < length; i++) {
-            if (teams.get(i) == null) {
-                visit[i] = true;
+        for (int i = 0; i < n; i++) {
+            xl = i * 2 + 1;
+            for (int j = 0; j < xl; j++) {
+                answer += dfs(n, rooks, triangle, i, j);
             }
         }
-        queue.addLast(0);
-        do {
-            rt = queue.pollFirst();
-            root[index++] = rt;
-            for (int i : teams.get(rt)) {
-                if (!visit[i]) {
-                    visit[i] = true;
-                    queue.addLast(i);
+        return answer;
+    }
+
+    int dfs(int n, int rooks, boolean[][] triangle, int i, int j) {
+        if (rooks == 0) {
+            return 1;
+        }
+        triangle[i][j] = true;
+        rooks--;
+
+        int answer = 0;
+        int xl;
+        int x = j + 1;
+
+        for (int y = i; y < n; y++) {
+            xl = y * 2 + 1;
+            for (; x < xl; x++) {
+                if (verifyRook(triangle, y, x)) {
+                    answer += dfs(n, rooks, triangle, y, x);
                 }
             }
-        } while (index < tLength);
-        do {
-            rt = root[--index];
-            queue = teams.get(rt);
-            sumChild = 0;
-            attendCost = 10000;
-            for (int i : queue) {
-                a0 = work[i];
-                a1 = sales[i];
-                sumChild += Math.min(a0, a1);
-                attendCost = Math.min(attendCost, a1 - a0);
+            x = 0;
+        }
+        triangle[i][j] = false;
+        return answer;
+    }
+
+    boolean verifyRook(boolean[][] triangle, int y, int x) {
+        int d = triangle[y].length - x;
+        int length;
+        boolean[] temp;
+        
+        for (int i = 0; i < y; i++) {
+            temp = triangle[i];
+            length = temp.length;
+            if (length > x && temp[x]) {
+                return false;
             }
-            sales[rt] += sumChild;
-            if (attendCost > 0) {
-                sumChild += attendCost;
+            if (x % 2 == 0) {
+                if (length > x + 1 && temp[x + 1]) {
+                    return false;
+                }
+            } else if (length > x - 1 && temp[x - 1]) {
+                return false;
             }
-            work[rt] += sumChild;
-        } while (index > 0);
-        return Math.min(sales[0], work[0]);
+            if (length >= d && temp[length - d]) {
+                return false;
+            }
+            if (x % 2 == 0) {
+                if (length > d && temp[length - d - 1]) {
+                    return false;
+                }
+            } else if (length + 1 >= d && temp[length - d + 1]) {
+                return false;
+            }
+        }
+        temp = triangle[y];
+        for (int i = 0; i < x; i++) {
+            if (temp[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
