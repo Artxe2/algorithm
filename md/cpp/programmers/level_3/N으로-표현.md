@@ -1,9 +1,4 @@
 ```cpp
-#include <string>
-#include <vector>
-
-using namespace std;
-
 int backtracking(int N, int number, int count, int acc, int answer);
 
 int solution(int N, int number) {
