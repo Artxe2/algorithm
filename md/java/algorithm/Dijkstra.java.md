@@ -89,42 +89,6 @@ public class Dijkstra {
         return true;
     }
 
-    int[] dijkstra(int n, int s, int k, int[][] cost, boolean[] visit) {
-        int[] fare = new int[n];
-
-        visit[s] = true;
-        System.arraycopy(cost[s], 0, fare, 0, n);
-        fare[s] = 0;
-        while (connect(n, k, fare, cost, visit));
-        return fare;
-    }
-
-    boolean connect(int n, int k, int[] fare, int[][] cost, boolean[] visit) {
-        int index = 0;
-        int min = k;
-        int t;
-        int[] temp;
-
-        for (int i = 0; i < n; i++) {
-            if (!visit[i] && fare[i] < min) {
-                index = i;
-                min = fare[i];
-            }
-        }
-        if (min == k) {
-            return false;
-        }
-        visit[index] = true;
-        temp = cost[index];
-        for (int i = 0; i < n; i++) {
-            t = temp[i];
-            if (!visit[i] && t + min < fare[i]) {
-                fare[i] = t + min;
-            }
-        }
-        return true;
-    }
-
     int[][] toGraph(int n, int[][] roads) {
         int a0;
         int a1;

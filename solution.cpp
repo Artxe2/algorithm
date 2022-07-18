@@ -1,8 +1,3 @@
-#include <string>
-#include <vector>
-
-using namespace std;
-
 int backtracking(int N, int number, int count, int acc, int answer);
 
 int solution(int N, int number) {
@@ -48,6 +43,9 @@ int backtracking(int N, int number, int count, int acc, int answer) {
 }
 /* * * * */
 #include <iostream>
+
+using namespace std;
+
 int main() {
     std::cout << solution(5, 12);
     return 0;
