@@ -129,6 +129,7 @@ const list = {
                 , [ "올바른 괄호의 갯수", catalanNumber ]
                 , [ "지형 이동", BFS_breadthFirstSearch ]
                 , [ "징검다리", parametricSearch ]
+                , [ "쿠키 구입", backtracking, prefixSum ]
             ]
             , level_3: [
                 [ "110 옮기기", simulation ]
